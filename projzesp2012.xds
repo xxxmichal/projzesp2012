@@ -1,0 +1,57 @@
+{
+    "name": "projzesp2012",
+    "settings": {
+        "urlPrefix": "http://localhost/projzesp2012/projzesp2012/",
+        "spacesToIndent": 4,
+        "exportPath": "",
+        "sdkPath": "",
+        "lineEnding": "LF",
+        "genTimestamps": false,
+        "cacheBust": false
+    },
+    "xdsVersion": "2.1.0",
+    "xdsBuild": 676,
+    "schemaVersion": 1,
+    "upgradeVersion": 210000000498,
+    "framework": "touch21",
+    "topInstanceFileMap": {
+        "3dc044f8-e6b6-491a-ae77-4cdc407013f2": {
+            "paths": [
+                "metadata/view/MyTabPanel",
+                "app/view/override/MyTabPanel.js",
+                "app/view/MyTabPanel.js"
+            ],
+            "className": "MyTabPanel"
+        },
+        "50376fe5-2b95-4359-b7b2-d018aff23a8d": {
+            "paths": [
+                "metadata/resource/Library"
+            ],
+            "className": "Library"
+        },
+        "601fea04-8e9f-4b9d-9679-8f64ad3364a4": {
+            "paths": [
+                "metadata/controller/MyController",
+                "app/controller/override/MyController.js",
+                "app/controller/MyController.js"
+            ],
+            "className": "MyController"
+        }
+    },
+    "viewOrderMap": {
+        "view": [
+            "3dc044f8-e6b6-491a-ae77-4cdc407013f2"
+        ],
+        "store": [],
+        "controller": [
+            "601fea04-8e9f-4b9d-9679-8f64ad3364a4"
+        ],
+        "model": [],
+        "resource": [
+            "50376fe5-2b95-4359-b7b2-d018aff23a8d"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

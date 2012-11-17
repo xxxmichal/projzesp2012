@@ -1,0 +1,35 @@
+{
+    "type": "controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "MyController"
+    },
+    "id": "ExtBox1-ext-gen3559",
+    "designerId": "601fea04-8e9f-4b9d-9679-8f64ad3364a4",
+    "cn": [
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onButtonRelease",
+                "fn": "onButtonRelease",
+                "implHandler": [
+                    "",
+                    "console.info('onButtonRelease');"
+                ],
+                "name": "release",
+                "designer|targetType": "Ext.Button",
+                "designer|controlQuery": "button#sizeToggle"
+            },
+            "designerId": "cf10b69d-4eb7-429b-9042-000260a0770c"
+        }
+    ]
+}
