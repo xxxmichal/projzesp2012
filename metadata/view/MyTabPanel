@@ -1,0 +1,504 @@
+{
+    "type": "tabpanel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "container|animation": "slide",
+        "designer|userClassName": "MyTabPanel",
+        "designer|initialView": true
+    },
+    "id": "ExtBox1-ext-gen2123",
+    "designerId": "3dc044f8-e6b6-491a-ae77-4cdc407013f2",
+    "cn": [
+        {
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": "Triggers",
+                "designer|userClassName": "MyContainer2",
+                "layout": "vbox"
+            },
+            "designerId": "0cfb8fa5-236d-4fbb-b69c-e9bf8693cb9d",
+            "cn": [
+                {
+                    "type": "togglefield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyToggleField4",
+                        "label": "Position"
+                    },
+                    "designerId": "28b7a52d-b853-496b-9dde-36f2ecfe0690"
+                },
+                {
+                    "type": "togglefield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyToggleField5",
+                        "label": "Temperature"
+                    },
+                    "designerId": "8403e394-c283-4cb8-bb21-fedb6dae5279"
+                },
+                {
+                    "type": "spinnerfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MySpinnerField",
+                        "label": "",
+                        "stepValue": 1
+                    },
+                    "designerId": "06d8c247-977b-4346-b4cd-6a9717291b6e"
+                },
+                {
+                    "type": "togglefield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyToggleField8",
+                        "label": "Time"
+                    },
+                    "designerId": "7a811859-470a-41db-b31f-eb6874d466c5"
+                },
+                {
+                    "type": "togglefield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyToggleField6",
+                        "label": "Date"
+                    },
+                    "designerId": "e37d8d72-1ce3-4dbb-9c3d-523759974261"
+                },
+                {
+                    "type": "datepickerfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyDateField",
+                        "label": "",
+                        "placeHolder": "mm/dd/yyyy"
+                    },
+                    "designerId": "72b026b6-e2d8-440e-a064-6e4f88f1dc69",
+                    "cn": [
+                        {
+                            "type": "datepicker",
+                            "reference": {
+                                "name": "picker",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "MyDatePicker"
+                            },
+                            "designerId": "84a4443c-2323-4479-9f62-e5b41681021d",
+                            "cn": [
+                                {
+                                    "type": "button",
+                                    "reference": {
+                                        "name": "doneButton",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "MyButton2",
+                                        "text": "Done"
+                                    },
+                                    "designerId": "b5c5113b-36ab-43ca-a5db-216bb24d282c"
+                                },
+                                {
+                                    "type": "button",
+                                    "reference": {
+                                        "name": "cancelButton",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "MyButton3",
+                                        "text": "Cancel"
+                                    },
+                                    "designerId": "cc81ef87-4a54-4f13-84af-58a5b126b457"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "carousel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": 1,
+                        "designer|userClassName": "MyCarousel",
+                        "direction": "vertical"
+                    },
+                    "designerId": "8fcacc13-c076-40f6-aa1f-0d6eec12982e",
+                    "cn": [
+                        {
+                            "type": "togglefield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "MyToggleField9",
+                                "label": "Wifi"
+                            },
+                            "designerId": "93f84b38-3c9f-4e3d-a942-9ec76638f2fe"
+                        },
+                        {
+                            "type": "togglefield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "MyToggleField7",
+                                "label": "Headphones"
+                            },
+                            "designerId": "8e3c2ed0-0384-447d-bb86-61eb7038b14f"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": "Actions",
+                "designer|userClassName": "MyContainer",
+                "ui": null,
+                "layout": "vbox"
+            },
+            "designerId": "7ab41a96-ae5b-4d49-8a1f-cceca1b31308",
+            "cn": [
+                {
+                    "type": "togglefield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyToggleField",
+                        "label": "Email"
+                    },
+                    "designerId": "7a1a9e80-2816-4960-b9fb-1ed23d2b2da8"
+                },
+                {
+                    "type": "emailfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyEmailField",
+                        "label": "",
+                        "placeHolder": "email@example.com"
+                    },
+                    "designerId": "4f87afb1-d977-4076-a63e-b1ab7b8b4b2a"
+                },
+                {
+                    "type": "togglefield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyToggleField1",
+                        "label": "Brigthness"
+                    },
+                    "designerId": "827fc438-c4f2-4cf3-ae2b-246063f45dcf"
+                },
+                {
+                    "type": "sliderfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MySliderField",
+                        "label": ""
+                    },
+                    "designerId": "2ff0807c-3ade-4da1-8575-e3d40d795984"
+                },
+                {
+                    "type": "togglefield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyToggleField10",
+                        "label": "Perform software actualizations"
+                    },
+                    "designerId": "34a7899e-4e62-4e4a-acc0-3424576c5ce4"
+                },
+                {
+                    "type": "togglefield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyToggleField11",
+                        "label": "Turn on radio"
+                    },
+                    "designerId": "6c0549c6-4eb0-487e-8c01-f670c8385fd3"
+                },
+                {
+                    "type": "togglefield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyToggleField12",
+                        "label": "Turn on alarm"
+                    },
+                    "designerId": "cd948f45-1eb6-4d62-9c0d-d66bb1549fff"
+                },
+                {
+                    "type": "togglefield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyToggleField13",
+                        "label": "Record"
+                    },
+                    "designerId": "85e59ef6-7a35-4034-b91c-acae8f3ced5d"
+                },
+                {
+                    "type": "togglefield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyToggleField14",
+                        "label": "SMS"
+                    },
+                    "designerId": "660e34d1-5923-4799-a11c-8d3183612d03"
+                },
+                {
+                    "type": "numberfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyNumberField",
+                        "label": ""
+                    },
+                    "designerId": "1cd3daa2-3b8b-4236-b7b6-ba425e924731"
+                },
+                {
+                    "type": "togglefield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyToggleField15",
+                        "label": "Run program"
+                    },
+                    "designerId": "71436631-25fb-45c8-ac1d-560f5c3b0524"
+                },
+                {
+                    "type": "togglefield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyToggleField16",
+                        "label": "Play sound"
+                    },
+                    "designerId": "73e44901-3303-49d3-affb-047977ee406e"
+                },
+                {
+                    "type": "togglefield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyToggleField8",
+                        "label": "Sound profile"
+                    },
+                    "designerId": "190cea70-1189-4c56-9641-39e480d83723"
+                }
+            ]
+        },
+        {
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": "Widget Designer",
+                "designer|userClassName": "MyContainer2",
+                "layout": "vbox"
+            },
+            "designerId": "4e8f9427-4eee-4474-a1be-528e1a148bd6",
+            "cn": [
+                {
+                    "type": "container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null,
+                        "designer|userClassName": "MyContainer3",
+                        "height": 345,
+                        "ui": "",
+                        "width": 478,
+                        "layout": "vbox"
+                    },
+                    "designerId": "105141d8-941f-4ac3-9d9d-feb2588f8bba",
+                    "cn": [
+                        {
+                            "type": "button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "MyButton2",
+                                "text": "Text"
+                            },
+                            "designerId": "6ecff7dd-ee30-48a2-a48f-74319db39224"
+                        },
+                        {
+                            "type": "button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "MyButton3",
+                                "text": "Image"
+                            },
+                            "designerId": "e7d85b90-48cd-4613-9f98-f2301e85124a"
+                        },
+                        {
+                            "type": "button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "MyButton4",
+                                "text": "Map"
+                            },
+                            "designerId": "9f22c5d1-dc3f-462c-926c-54f01a14b872"
+                        }
+                    ]
+                },
+                {
+                    "type": "container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": 1,
+                        "designer|userClassName": "MyContainer5",
+                        "height": 221,
+                        "width": 492,
+                        "layout": "vbox"
+                    },
+                    "designerId": "545bb4c8-2ac6-4402-a367-6c47e66f9385",
+                    "cn": [
+                        {
+                            "type": "label",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "MyLabel",
+                                "html": "canvas area (dropdown)"
+                            },
+                            "designerId": "fb00b635-cdae-4ba2-bd18-581a61f71129"
+                        },
+                        {
+                            "type": "image",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "MyImage",
+                                "height": 201,
+                                "ui": "",
+                                "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSf1EqdIgnHtVgA3FcMEB3e8uEPwvft4sertRqqlZHX3FSotqL4"
+                            },
+                            "designerId": "0ad973ff-1a3e-4b33-9ecf-9d6ce2cacfee"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
