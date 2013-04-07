@@ -6,5 +6,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="myhello">this is my hello</string>
     <string name="title_activity_next">NextActivity</string>
+    <string name="title_activity_my_maps">MyMapsActivity</string>
 
 </resources>

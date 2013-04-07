@@ -15,7 +15,6 @@
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
-    
     <uses-feature
         android:name="android.hardware.location"
         android:required="false" />
@@ -58,6 +57,11 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDEExu2JRyU7KMStlwm8oVN90YPkRHXK4I" />
+
+        <activity
+            android:name="com.example.fuuu.MyMapsActivity"
+            android:label="@string/title_activity_my_maps" >
+        </activity>
     </application>
 
 </manifest>
