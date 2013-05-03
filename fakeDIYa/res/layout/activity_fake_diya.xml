@@ -1,0 +1,105 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FakeDIYa" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Triggers"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/buttonTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:text="Time" />
+
+    <Button
+        android:id="@+id/buttonIsWifi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonTime"
+        android:layout_alignBottom="@+id/buttonTime"
+        android:layout_toRightOf="@+id/buttonTime"
+        android:text="Is Wifi" />
+
+    <Button
+        android:id="@+id/buttonGPS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonIsWifi"
+        android:layout_alignBottom="@+id/buttonIsWifi"
+        android:layout_toRightOf="@+id/buttonIsWifi"
+        android:text="GPS" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/buttonTime"
+        android:layout_marginTop="19dp"
+        android:text="Actions"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/buttonWifiOn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView2"
+        android:text="Wifi On" />
+
+    <Button
+        android:id="@+id/buttonVolume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonWifiOn"
+        android:layout_alignBottom="@+id/buttonWifiOn"
+        android:layout_toRightOf="@+id/buttonWifiOn"
+        android:text="Volume" />
+
+    <Button
+        android:id="@+id/buttonNotif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonVolume"
+        android:layout_alignBottom="@+id/buttonVolume"
+        android:layout_toRightOf="@+id/buttonVolume"
+        android:text="Notif" />
+
+    <TextView
+        android:id="@+id/textTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/buttonWifiOn"
+        android:text="Text time"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/textIsWifi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textTime"
+        android:text="Text Is Wifi"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/textGPS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textIsWifi"
+        android:text="Text GPS"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>
