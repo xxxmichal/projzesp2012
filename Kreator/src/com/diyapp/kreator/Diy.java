@@ -16,7 +16,7 @@
 
 package com.diyapp.kreator;
 
-import com.diyapp.kreator.R;
+import com.diyapp.kreator2.R;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -56,7 +56,7 @@ public class Diy extends ListActivity {
         for (String string : fileList) {
         	Log.v("diy",string);
         }
-    	Log.v("diy","hello");
+    	Log.v("diy","kreator");
 
     }
     

@@ -1,6 +1,6 @@
 package com.diyapp.kreator;
 
-import com.diyapp.kreator.R;
+import com.diyapp.kreator2.R;
 
 import android.app.Activity;
 import android.content.Intent;

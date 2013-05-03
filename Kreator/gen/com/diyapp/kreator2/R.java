@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.diyapp.kreator;
+package com.diyapp.kreator2;
 
 public final class R {
     public static final class attr {

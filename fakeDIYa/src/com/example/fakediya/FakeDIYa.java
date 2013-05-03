@@ -1,5 +1,6 @@
 package com.example.fakediya;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
@@ -13,7 +14,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
@@ -24,6 +30,7 @@ import android.net.Uri;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,9 +38,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fakediya2.R;
+
 public class FakeDIYa extends Activity {
-
-
 
 	private BroadcastReceiver the_receiver = new BroadcastReceiver() {
 		@Override
@@ -53,8 +60,9 @@ public class FakeDIYa extends Activity {
 			}
 		}
 	};
-	private IntentFilter filter = new IntentFilter(Intent.ACTION_CONFIGURATION_CHANGED);
-	
+	private IntentFilter filter = new IntentFilter(
+			Intent.ACTION_CONFIGURATION_CHANGED);
+
 	@Override
 	protected void onPause() {
 
@@ -67,14 +75,103 @@ public class FakeDIYa extends Activity {
 		this.registerReceiver(the_receiver, filter);
 		super.onResume();
 	}
+
 	// Location savedLocation = null;
 	// LocationListener locationListener = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_fake_diya);
 
+		Context ctx = null;
+		try {
+			// creating context from mainAPP for accessing database
+			ctx = createPackageContext("com.diyapp.kreator2",
+					Context.CONTEXT_IGNORE_SECURITY);
+			if (ctx == null) {
+				Log.v("fake", "failed to get db");
+			} else {
+				Log.v("fake", "got db");
+			}
+		} catch (PackageManager.NameNotFoundException e) {
+			// package not found
+			Log.e("Error", e.getMessage());
+		}
+		SQLiteDatabase dbb;
+		Cursor cur;
+		try {
+			File myDbFile = ctx.getDatabasePath("data2");
+			if (myDbFile.exists()) {
+				dbb = openOrCreateDatabase(myDbFile.getPath(),
+						SQLiteDatabase.OPEN_READWRITE, null);
+				dbb.setVersion(1);
+				dbb.setLocale(Locale.getDefault());
+				dbb.setLockingEnabled(true);
+				try {
+					cur = dbb.rawQuery("select * from diys;", null);
+					try {
+						cur.moveToFirst();
+						int k = cur.getColumnCount();
+						String[] lv_arr = new String[k];
+						for (int i = 0; i < k; i++) {
+							lv_arr[i] = "" + cur.getString(i);
+							Toast.makeText(this, "Data " + i + " " + cur.getString(i),
+									Toast.LENGTH_SHORT).show();
+						}
+					} catch (Exception e) {
+						// may be an empty database
+						Log.e("Error", e.getMessage());
+						dbb.close();
+					}
+				} catch (Exception e) {
+					Log.e("Error", e.getMessage());
+					dbb.close();
+				}
+			} else {
+				// database not found
+				Toast.makeText(this, "DataBase Doesnot Exist",
+						Toast.LENGTH_SHORT).show();
+			}
+		} catch (Exception e) {
+			Log.i("\n\nTAG", e.toString());
+		}
+//----------
+		File file = new File(
+				"/data/data/com.diyapp.kreator2/files/test_kreator.txt");
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		File file2 = new File(getFilesDir().getPath() + "/test_fake2.txt");
+		Log.v("diy", "getFilesDir().getPath() = " + getFilesDir().getPath());
+		if (!file2.exists()) {
+			Log.v("diy", "fake creating file");
+			try {
+				file2.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		String[] fileList = fileList();
+		for (String string : fileList) {
+			Log.v("diy", string);
+		}
+		Log.v("diy", "fake");
+
+		PackageManager m = getPackageManager();
+		String s = getPackageName();
+		try {
+			PackageInfo p = m.getPackageInfo(s, 0);
+			s = p.applicationInfo.dataDir;
+			Log.w("yourtag", s);
+		} catch (NameNotFoundException e) {
+			Log.w("yourtag", "Error Package name not found ", e);
+		}
+
+		setContentView(R.layout.activity_fake_diya);
 
 		Button buttonTime = (Button) findViewById(R.id.buttonTime);
 		Button buttonIsWifi = (Button) findViewById(R.id.buttonIsWifi);
