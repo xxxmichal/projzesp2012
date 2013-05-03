@@ -22,6 +22,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,12 +44,20 @@ public class Diy extends ListActivity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diys_list);
         mDbHelper = new DiyDbAdapter(this);
         mDbHelper.open();
         fillData();
         registerForContextMenu(getListView());
+        String[] fileList = fileList();
+        
+        for (String string : fileList) {
+        	Log.v("diy",string);
+        }
+    	Log.v("diy","hello");
+
     }
     
     private void fillData() {

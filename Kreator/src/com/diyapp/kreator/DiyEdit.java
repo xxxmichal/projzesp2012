@@ -96,6 +96,12 @@ public class DiyEdit extends Activity {
 		} else {
 			mDbHelper.updateDiy(mRowId, title, body);
 		}
+		
+		
+		// broadcast an update notice to Egzekutor
+		Intent intent = new Intent();
+		intent.setAction("com.example.sendbroadcast");
+		sendBroadcast(intent);
 	}	
 
 }
