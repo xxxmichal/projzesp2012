@@ -5,35 +5,16 @@
  * should not be modified by hand.
  */
 
-package com.diyapp.kreator2;
+package com.diyapp.lib;
 
 public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int icon=0x7f020001;
-    }
-    public static final class id {
-        public static final int body=0x7f060001;
-        public static final int confirm=0x7f060002;
-        public static final int text1=0x7f060003;
-        public static final int title=0x7f060000;
-    }
-    public static final class layout {
-        public static final int diy_edit=0x7f030000;
-        public static final int diys_list=0x7f030001;
-        public static final int diys_row=0x7f030002;
+        public static int ic_launcher=0x7f020000;
     }
     public static final class string {
-        public static final int app_name=0x7f040000;
-        public static final int body=0x7f040005;
-        public static final int confirm=0x7f040006;
-        public static final int edit_diy=0x7f040007;
-        public static final int menu_delete=0x7f040003;
-        public static final int menu_insert=0x7f040002;
-        public static final int no_diys=0x7f040001;
-        public static final int title=0x7f040004;
+        public static int app_name=0x7f030000;
     }
     public static final class style {
         /** 
@@ -57,10 +38,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f050000;
+        public static int AppBaseTheme=0x7f040000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f050001;
+        public static int AppTheme=0x7f040001;
     }
 }

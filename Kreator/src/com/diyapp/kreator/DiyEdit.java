@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.diyapp.lib.DiyDbAdapter;
+
 public class DiyEdit extends Activity {
 	EditText mTitleText;
 	EditText mBodyText;

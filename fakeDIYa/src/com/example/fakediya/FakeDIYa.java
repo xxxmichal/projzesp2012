@@ -40,8 +40,11 @@ import android.widget.Toast;
 
 import com.example.fakediya2.R;
 
-public class FakeDIYa extends Activity {
+import com.diyapp.lib.DiyDbAdapter;
 
+public class FakeDIYa extends Activity {
+	private DiyDbAdapter mDbHelper;
+	
 	private BroadcastReceiver the_receiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context c, Intent i) {
@@ -83,6 +86,15 @@ public class FakeDIYa extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		Log.v("fake", "trying DiyDbAdapter");
+        mDbHelper = new DiyDbAdapter(this);
+        mDbHelper.open();
+    	Cursor diysCursor = mDbHelper.fetchAllDiy();
+        startManagingCursor(diysCursor);
+        for ( String s : diysCursor.getColumnNames() ) {
+        	Log.v("fake", "column name " + s);	
+        }
+		
 		Context ctx = null;
 		try {
 			// creating context from mainAPP for accessing database
