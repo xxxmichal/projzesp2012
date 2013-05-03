@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Diyapp Kreator</string>
+    <string name="no_diys">No Diys Yet</string>
+    <string name="menu_insert">Add Diy</string>
+    <string name="menu_delete">Delete Diy</string>
+    <string name="title">Title</string>
+    <string name="body">Body</string>
+    <string name="confirm">Confirm</string>
+    <string name="edit_diy">Edit Diy</string>
+</resources>
