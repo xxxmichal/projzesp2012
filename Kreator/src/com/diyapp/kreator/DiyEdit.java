@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.diyapp.lib.DiyDbAdapter;
@@ -15,6 +16,7 @@ import com.diyapp.lib.DiyDbAdapter;
 public class DiyEdit extends Activity {
 	EditText mTitleText;
 	EditText mBodyText;
+	CheckBox mEnabledCB;
 	Long mRowId;
 	
 	private DiyDbAdapter mDbHelper;
@@ -31,6 +33,7 @@ public class DiyEdit extends Activity {
 		setTitle(R.string.edit_diy);
 		mTitleText = (EditText) findViewById(R.id.title);
 		mBodyText = (EditText) findViewById(R.id.body);
+		mEnabledCB = (CheckBox) findViewById(R.id.enabled);
 		
 		populateFields();
 		
@@ -64,6 +67,8 @@ public class DiyEdit extends Activity {
 					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_TITLE)));
 			mBodyText.setText(diy.getString(
 					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_BODY)));
+			mEnabledCB.setChecked(1 == diy.getInt(
+					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ENABLED)));
 		}
 	}
 
@@ -89,7 +94,7 @@ public class DiyEdit extends Activity {
 	private void saveState() {
 		String title = mTitleText.getText().toString();
 		String body = mBodyText.getText().toString();
-		boolean enabled = true;
+		boolean enabled = mEnabledCB.isChecked();
 		String trigger_example = "trig1";
 		
 		if (mRowId == null) {

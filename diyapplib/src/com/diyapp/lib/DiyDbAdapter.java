@@ -107,7 +107,7 @@ public class DiyDbAdapter {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_TITLE, title);
         initialValues.put(KEY_BODY, body);
-        initialValues.put(KEY_ENABLED, enabled);
+        initialValues.put(KEY_ENABLED, enabled ? 1 : 0);
         initialValues.put(KEY_TRIGGER_EXAMPLE, trigger_example);
 
         return mDb.insert(DATABASE_TABLE, null, initialValues);
@@ -170,7 +170,7 @@ public class DiyDbAdapter {
         ContentValues args = new ContentValues();
         args.put(KEY_TITLE, title);
         args.put(KEY_BODY, body);
-        args.put(KEY_ENABLED, enabled);
+        args.put(KEY_ENABLED, enabled  ? 1 : 0);
         args.put(KEY_TRIGGER_EXAMPLE, trigger_example);
 
         return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
