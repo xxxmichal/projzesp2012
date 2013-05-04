@@ -21,7 +21,7 @@ import android.util.Log;
 public class DiyDbAdapter {
 	// increase version after modifying columns, clean and rebuild library AND
 	// project!
-	private static final int DATABASE_VERSION = 8;
+	private static final int DATABASE_VERSION = 9;
 
 	private static final String DATABASE_NAME = "data2";
 	private static final String DATABASE_TABLE = "diys";
@@ -30,8 +30,17 @@ public class DiyDbAdapter {
 	public static final String KEY_TITLE = "title";
 	public static final String KEY_DESCRIPTION = "description";
 	public static final String KEY_ENABLED = "enabled";
+
+	// triggers
 	public static final String KEY_TRIGGER_EXAMPLE = "trigger_example";
 	public static final String KEY_TRIGGER_EXAMPLE_PARAM_1 = "trigger_example_param_1";
+
+	public static final String KEY_TRIGGER_LOCATION = "trigger_location";
+	public static final String KEY_TRIGGER_LOCATION_PARAM_LATITUDE = "trigger_location_param_latitude";
+	public static final String KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE = "trigger_location_param_longtitude";
+	public static final String KEY_TRIGGER_LOCATION_PARAM_AREA = "trigger_location_param_area";
+
+	// actions
 	public static final String KEY_ACTION_EXAMPLE = "action_example";
 	public static final String KEY_ACTION_EXAMPLE_PARAM_1 = "action_example_param_1";
 
@@ -39,8 +48,17 @@ public class DiyDbAdapter {
 			KEY_TITLE, //
 			KEY_DESCRIPTION, //
 			KEY_ENABLED, //
+
+			// triggers
 			KEY_TRIGGER_EXAMPLE, //
 			KEY_TRIGGER_EXAMPLE_PARAM_1, //
+
+			KEY_TRIGGER_LOCATION, //
+			KEY_TRIGGER_LOCATION_PARAM_LATITUDE, //
+			KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE, //
+			KEY_TRIGGER_LOCATION_PARAM_AREA, //
+
+			// actions
 			KEY_ACTION_EXAMPLE, //
 			KEY_ACTION_EXAMPLE_PARAM_1 }; //
 
@@ -57,10 +75,21 @@ public class DiyDbAdapter {
 			+ KEY_TITLE + " text not null, " //
 			+ KEY_DESCRIPTION + " text not null, " //
 			+ KEY_ENABLED + " integer not null, " // 0|1 is this diya active ?
-			+ KEY_TRIGGER_EXAMPLE + " integer not null, " //  0|1 is this trigger active ?
+
+			// triggers
+			+ KEY_TRIGGER_EXAMPLE + " integer not null, " // 0|1 is this trigger
+															// active ?
 			+ KEY_TRIGGER_EXAMPLE_PARAM_1 + " text not null, " //
-			+ KEY_ACTION_EXAMPLE + " integer not null, " // 0|1 is this action active ?
-			+ KEY_ACTION_EXAMPLE_PARAM_1 + " text not null);"; //  
+
+			+ KEY_TRIGGER_LOCATION + " integer not null, " //
+			+ KEY_TRIGGER_LOCATION_PARAM_LATITUDE + " real not null, " //
+			+ KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE + " real not null, " //
+			+ KEY_TRIGGER_LOCATION_PARAM_AREA + " real not null, " //
+			
+			// actions
+			+ KEY_ACTION_EXAMPLE + " integer not null, " // 0|1 is this action
+															// active ?
+			+ KEY_ACTION_EXAMPLE_PARAM_1 + " text not null);"; //
 
 	private final Context mCtx;
 
@@ -133,10 +162,20 @@ public class DiyDbAdapter {
 		initialValues.put(KEY_TITLE, title);
 		initialValues.put(KEY_DESCRIPTION, description);
 		initialValues.put(KEY_ENABLED, enabled ? 1 : 0);
+		
+		//triggers
 		initialValues.put(KEY_TRIGGER_EXAMPLE, 0);
 		initialValues.put(KEY_TRIGGER_EXAMPLE_PARAM_1, "");
+		
+        initialValues.put(KEY_TRIGGER_LOCATION, 0);
+        initialValues.put(KEY_TRIGGER_LOCATION_PARAM_LATITUDE, 0.0);
+        initialValues.put(KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE, 0.0);
+        initialValues.put(KEY_TRIGGER_LOCATION_PARAM_AREA, 100.0);
+		
+		//actions
 		initialValues.put(KEY_ACTION_EXAMPLE, 0);
 		initialValues.put(KEY_ACTION_EXAMPLE_PARAM_1, "");
+		
 
 		return mDb.insert(DATABASE_TABLE, null, initialValues);
 	}
@@ -187,8 +226,8 @@ public class DiyDbAdapter {
 
 	/**
 	 * Update the diy using the details provided. The diy to be updated is
-	 * specified using the rowId, and it is altered to use the title and description
-	 * values passed in
+	 * specified using the rowId, and it is altered to use the title and
+	 * description values passed in
 	 * 
 	 * @param rowId
 	 *            id of diy to update
@@ -209,10 +248,18 @@ public class DiyDbAdapter {
 	}
 
 	public boolean updateDiyTriggers(long rowId,
-			boolean trigger_example_enabled, String trigger_example_param_1) {
+			boolean trigger_example_enabled, String trigger_example_param_1,
+			boolean trigger_location_enabled, double trigger_location_param_latitude,
+			double trigger_location_param_longtitude, double trigger_location_param_area ) {
 		ContentValues args = new ContentValues();
 		args.put(KEY_TRIGGER_EXAMPLE, trigger_example_enabled ? 1 : 0);
 		args.put(KEY_TRIGGER_EXAMPLE_PARAM_1, trigger_example_param_1);
+		
+		args.put(KEY_TRIGGER_LOCATION, trigger_location_enabled ? 1 : 0);
+		args.put(KEY_TRIGGER_LOCATION_PARAM_LATITUDE, trigger_location_param_latitude);
+		args.put(KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE, trigger_location_param_longtitude);
+		args.put(KEY_TRIGGER_LOCATION_PARAM_AREA, trigger_location_param_area);
+		
 
 		return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
 	}
