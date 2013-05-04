@@ -55,11 +55,12 @@ public class DiyDbAdapter {
 			+ DATABASE_TABLE + " ( " //
 			+ KEY_ROWID + " integer primary key autoincrement, " //
 			+ KEY_TITLE + " text not null, " //
-			+ KEY_DESCRIPTION + " text not null, enabled integer not null, " //
-			+ KEY_TRIGGER_EXAMPLE + " integer not null, " //
+			+ KEY_DESCRIPTION + " text not null, " //
+			+ KEY_ENABLED + " integer not null, " // 0|1 is this diya active ?
+			+ KEY_TRIGGER_EXAMPLE + " integer not null, " //  0|1 is this trigger active ?
 			+ KEY_TRIGGER_EXAMPLE_PARAM_1 + " text not null, " //
-			+ KEY_ACTION_EXAMPLE + " integer not null, " //
-			+ KEY_ACTION_EXAMPLE_PARAM_1 + " text not null);"; //
+			+ KEY_ACTION_EXAMPLE + " integer not null, " // 0|1 is this action active ?
+			+ KEY_ACTION_EXAMPLE_PARAM_1 + " text not null);"; //  
 
 	private final Context mCtx;
 
