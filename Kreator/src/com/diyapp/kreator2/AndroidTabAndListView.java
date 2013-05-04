@@ -27,7 +27,7 @@ public class AndroidTabAndListView extends TabActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.tabs_editing);
         
         DiyDbAdapter dbHelper = new DiyDbAdapter(this);
 		dbHelper.open();

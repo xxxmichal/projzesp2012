@@ -184,7 +184,7 @@ containing a value of this type.
         public static final int diy_edit=0x7f030003;
         public static final int diys_list=0x7f030004;
         public static final int diys_row=0x7f030005;
-        public static final int main=0x7f030006;
+        public static final int tabs_editing=0x7f030006;
     }
     public static final class menu {
         public static final int activity_diy_edit_actions=0x7f070000;
