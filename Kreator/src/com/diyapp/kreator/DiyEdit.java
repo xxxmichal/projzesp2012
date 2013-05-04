@@ -89,14 +89,16 @@ public class DiyEdit extends Activity {
 	private void saveState() {
 		String title = mTitleText.getText().toString();
 		String body = mBodyText.getText().toString();
+		boolean enabled = true;
+		String trigger_example = "trig1";
 		
 		if (mRowId == null) {
-			long id = mDbHelper.createDiy(title, body);
+			long id = mDbHelper.createDiy(title, body, enabled, trigger_example);
 			if ( id > 0 ) {
 				mRowId = id;
 			}
 		} else {
-			mDbHelper.updateDiy(mRowId, title, body);
+			mDbHelper.updateDiy(mRowId, title, body, enabled, trigger_example);
 		}
 		
 		

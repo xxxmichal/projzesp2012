@@ -22,6 +22,8 @@ public class DiyDbAdapter {
 
     public static final String KEY_TITLE = "title";
     public static final String KEY_BODY = "body";
+    public static final String KEY_ENABLED = "enabled";
+    public static final String KEY_TRIGGER_EXAMPLE = "trigger_example";
     public static final String KEY_ROWID = "_id";
 
     private static final String TAG = "DiyDbAdapter";
@@ -33,23 +35,23 @@ public class DiyDbAdapter {
      */
     private static final String DATABASE_CREATE =
         "create table diys (_id integer primary key autoincrement, "
-        + "title text not null, body text not null);";
+        + "title text not null, body text not null, enabled integer not null, trigger_example text not null);";
 
     private static final String DATABASE_NAME = "data2";
     private static final String DATABASE_TABLE = "diys";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 4; // increase version after modifying columns 
 
     private final Context mCtx;
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
 
-        DatabaseHelper(Context context) {
+    	DatabaseHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    		Log.v("DiyDbAdapter", "db: " + DATABASE_NAME + " version: " + DATABASE_VERSION);
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-
             db.execSQL(DATABASE_CREATE);
         }
 
@@ -101,10 +103,12 @@ public class DiyDbAdapter {
      * @param body the body of the diy
      * @return rowId or -1 if failed
      */
-    public long createDiy(String title, String body) {
+    public long createDiy(String title, String body, boolean enabled, String trigger_example) {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_TITLE, title);
         initialValues.put(KEY_BODY, body);
+        initialValues.put(KEY_ENABLED, enabled);
+        initialValues.put(KEY_TRIGGER_EXAMPLE, trigger_example);
 
         return mDb.insert(DATABASE_TABLE, null, initialValues);
     }
@@ -128,7 +132,7 @@ public class DiyDbAdapter {
     public Cursor fetchAllDiy() {
 
         return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_TITLE,
-                KEY_BODY}, null, null, null, null, null);
+                KEY_BODY, KEY_ENABLED, KEY_TRIGGER_EXAMPLE}, null, null, null, null, null);
     }
 
     /**
@@ -143,7 +147,7 @@ public class DiyDbAdapter {
         Cursor mCursor =
 
             mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-                    KEY_TITLE, KEY_BODY}, KEY_ROWID + "=" + rowId, null,
+                    KEY_TITLE, KEY_BODY, KEY_ENABLED, KEY_TRIGGER_EXAMPLE}, KEY_ROWID + "=" + rowId, null,
                     null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -162,10 +166,12 @@ public class DiyDbAdapter {
      * @param body value to set diy body to
      * @return true if the diy was successfully updated, false otherwise
      */
-    public boolean updateDiy(long rowId, String title, String body) {
+    public boolean updateDiy(long rowId, String title, String body, boolean enabled, String trigger_example) {
         ContentValues args = new ContentValues();
         args.put(KEY_TITLE, title);
         args.put(KEY_BODY, body);
+        args.put(KEY_ENABLED, enabled);
+        args.put(KEY_TRIGGER_EXAMPLE, trigger_example);
 
         return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     }
