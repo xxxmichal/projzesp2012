@@ -1,45 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="match_parent"
-	android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-    	
-	<CheckBox
-	    android:id="@+id/enabled"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="Enabled" />
-    	
-	<LinearLayout android:orientation="horizontal"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+        <CheckBox
+            android:id="@+id/enabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enabled" />
 
-		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" 
-			android:text="@string/title" />
-		<EditText android:id="@+id/title" 
-		  android:layout_width="wrap_content"
-			android:layout_height="wrap_content" 
-			android:layout_weight="1"/>
-	</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
 
-	<TextView android:layout_width="wrap_content"
-		android:layout_height="wrap_content" 
-		android:text="@string/body" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title" />
 
-	
-	<EditText
-	    android:id="@+id/body"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_weight="0.79"
-	    android:scrollbars="vertical" />
+            <EditText
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/body" />
 
-	<Button android:id="@+id/confirm" 
-	  android:text="@string/confirm"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.79"
+            android:scrollbars="vertical" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm" />
+    </LinearLayout>
+
+</ScrollView>
