@@ -43,41 +43,6 @@ import com.example.fakediya2.R;
 import com.diyapp.lib.DiyDbAdapter;
 
 public class FakeDIYa extends Activity {
-	private DiyDbAdapter mDbHelper;
-	
-	private BroadcastReceiver the_receiver = new BroadcastReceiver() {
-		@Override
-		public void onReceive(Context c, Intent i) {
-			int orientation = getBaseContext().getResources()
-					.getConfiguration().orientation;
-			if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-				Toast.makeText(getBaseContext(), "I'm still standing.",
-						Toast.LENGTH_SHORT).show();
-			} else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-				Toast.makeText(getBaseContext(),
-						"Help! I've fallen and I can't get up.",
-						Toast.LENGTH_SHORT).show();
-			} else {
-				Toast.makeText(getBaseContext(), "?!#$%!?", Toast.LENGTH_SHORT)
-						.show();
-			}
-		}
-	};
-	private IntentFilter filter = new IntentFilter(
-			Intent.ACTION_CONFIGURATION_CHANGED);
-
-	@Override
-	protected void onPause() {
-
-		this.unregisterReceiver(the_receiver);
-		super.onPause();
-	}
-
-	@Override
-	protected void onResume() {
-		this.registerReceiver(the_receiver, filter);
-		super.onResume();
-	}
 	
 	public void showDb(View v) {
 		Intent i = new Intent(this, ListDiys.class);
