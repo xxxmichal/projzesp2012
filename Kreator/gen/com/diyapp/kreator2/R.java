@@ -27,7 +27,6 @@ public final class R {
         public static final int action_example_enabled=0x7f070000;
         public static final int action_example_param_1=0x7f070002;
         public static final int address=0x7f07001d;
-        public static final int body=0x7f070013;
         public static final int button1=0x7f070003;
         public static final int button10=0x7f07000c;
         public static final int button11=0x7f07000d;
@@ -41,6 +40,7 @@ public final class R {
         public static final int button9=0x7f07000b;
         public static final int confirm=0x7f070014;
         public static final int date=0x7f070018;
+        public static final int description=0x7f070013;
         public static final int email=0x7f07001b;
         public static final int enabled=0x7f070011;
         public static final int from=0x7f070016;
@@ -75,8 +75,8 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f040000;
-        public static final int body=0x7f040005;
         public static final int confirm=0x7f040006;
+        public static final int description=0x7f040005;
         public static final int edit_diy=0x7f040007;
         public static final int hello_world=0x7f04000a;
         public static final int menu_delete=0x7f040003;

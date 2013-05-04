@@ -6,7 +6,7 @@
     <string name="menu_insert">Add Diy</string>
     <string name="menu_delete">Delete Diy</string>
     <string name="title">Title</string>
-    <string name="body">Description</string>
+    <string name="description">Description</string>
     <string name="confirm">Confirm</string>
     <string name="edit_diy">Edit Diy</string>
     <string name="title_activity_diy_edit_triggers">DiyEditTriggersActivity</string>

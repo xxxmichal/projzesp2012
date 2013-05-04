@@ -32,7 +32,7 @@ public class DiyEdit extends Activity {
 		setContentView(R.layout.diy_edit);
 		setTitle(R.string.edit_diy);
 		mTitleText = (EditText) findViewById(R.id.title);
-		mBodyText = (EditText) findViewById(R.id.body);
+		mBodyText = (EditText) findViewById(R.id.description);
 		mEnabledCB = (CheckBox) findViewById(R.id.enabled);
 		
 		populateFields();
@@ -66,7 +66,7 @@ public class DiyEdit extends Activity {
 			mTitleText.setText(diy.getString(
 					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_TITLE)));
 			mBodyText.setText(diy.getString(
-					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_BODY)));
+					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_DESCRIPTION)));
 			mEnabledCB.setChecked(1 == diy.getInt(
 					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ENABLED)));
 		}
