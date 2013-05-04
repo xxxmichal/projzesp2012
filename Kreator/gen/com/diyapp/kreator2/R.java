@@ -13,17 +13,40 @@ public final class R {
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
         public static final int icon=0x7f020001;
+        public static final int icon_inbox=0x7f020002;
+        public static final int icon_outbox=0x7f020003;
+        public static final int icon_profile=0x7f020004;
+        public static final int inbox_gray=0x7f020005;
+        public static final int inbox_white=0x7f020006;
+        public static final int outbox_gray=0x7f020007;
+        public static final int outbox_white=0x7f020008;
+        public static final int profile_gray=0x7f020009;
+        public static final int profile_white=0x7f02000a;
     }
     public static final class id {
+        public static final int address=0x7f06000b;
         public static final int body=0x7f060001;
         public static final int confirm=0x7f060002;
+        public static final int date=0x7f060006;
+        public static final int email=0x7f060009;
+        public static final int from=0x7f060004;
+        public static final int mobile=0x7f06000a;
+        public static final int name=0x7f060008;
+        public static final int subject=0x7f060005;
         public static final int text1=0x7f060003;
         public static final int title=0x7f060000;
+        public static final int to=0x7f060007;
     }
     public static final class layout {
         public static final int diy_edit=0x7f030000;
         public static final int diys_list=0x7f030001;
         public static final int diys_row=0x7f030002;
+        public static final int inbox_list=0x7f030003;
+        public static final int inbox_list_item=0x7f030004;
+        public static final int main=0x7f030005;
+        public static final int outbox_list=0x7f030006;
+        public static final int outbox_list_item=0x7f030007;
+        public static final int profile=0x7f030008;
     }
     public static final class string {
         public static final int app_name=0x7f040000;

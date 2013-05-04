@@ -122,7 +122,8 @@ public class Diy extends ListActivity {
 
     private void createDiy() {
         // TODO: fill in implementation
-    	Intent i = new Intent(this, DiyEdit.class);
+    	//Intent i = new Intent(this, DiyEdit.class);
+    	Intent i = new Intent(this, AndroidTabAndListView.class);
     	startActivityForResult(i, ACTIVITY_CREATE);
 
     }
