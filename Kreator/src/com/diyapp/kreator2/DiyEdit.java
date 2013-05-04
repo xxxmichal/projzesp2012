@@ -1,17 +1,22 @@
-package com.diyapp.kreator;
+package com.diyapp.kreator2;
+
+import com.diyapp.kreator2.R;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import com.diyapp.kreator2.R;
 import com.diyapp.lib.DiyDbAdapter;
 
-public class DiyEditActionsActivity extends Activity {
-	EditText maction_example_param_1;
-	CheckBox maction_example_enabled;
+public class DiyEdit extends Activity {
+	EditText mTitleText;
+	EditText mBodyText;
+	CheckBox mEnabledCB;
 	Long mRowId;
 	
 	private DiyDbAdapter mDbHelper;
@@ -24,12 +29,15 @@ public class DiyEditActionsActivity extends Activity {
 		mDbHelper = new DiyDbAdapter(this);
 		mDbHelper.open();
 		
-		setContentView(R.layout.activity_diy_edit_actions);
+		setContentView(R.layout.diy_edit);
 		setTitle(R.string.edit_diy);
-		maction_example_enabled = (CheckBox) findViewById(R.id.action_example_enabled);
-		maction_example_param_1 = (EditText) findViewById(R.id.action_example_param_1);
-	
+		mTitleText = (EditText) findViewById(R.id.title);
+		mBodyText = (EditText) findViewById(R.id.description);
+		mEnabledCB = (CheckBox) findViewById(R.id.enabled);
+		
 		populateFields();
+		
+		Button confirmButton = (Button) findViewById(R.id.confirm);
 
 		mRowId = (savedInstanceState == null) ? null :
 			(Long) savedInstanceState.getSerializable(DiyDbAdapter.KEY_ROWID);
@@ -38,18 +46,29 @@ public class DiyEditActionsActivity extends Activity {
 			Bundle extras = getIntent().getExtras();
 			mRowId = extras != null ? extras.getLong(DiyDbAdapter.KEY_ROWID)
 									: null;
-		}	
+		}
+		
+		confirmButton.setOnClickListener( new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				setResult(RESULT_OK);
+				finish();
+				
+			}
+		});
 	}
 	
 	private void populateFields() {
 		if (mRowId != null) {
 			Cursor diy = mDbHelper.fetchDiy(mRowId);
 			startManagingCursor(diy);
-			
-			maction_example_enabled.setChecked(1 == diy.getInt(
-					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_EXAMPLE)));
-			maction_example_param_1.setText(diy.getString(
-					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_EXAMPLE_PARAM_1)));
+			mTitleText.setText(diy.getString(
+					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_TITLE)));
+			mBodyText.setText(diy.getString(
+					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_DESCRIPTION)));
+			mEnabledCB.setChecked(1 == diy.getInt(
+					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ENABLED)));
 		}
 	}
 
@@ -73,7 +92,11 @@ public class DiyEditActionsActivity extends Activity {
 	}
 	
 	private void saveState() {
-		mDbHelper.updateDiyActions(mRowId, maction_example_enabled.isChecked(), maction_example_param_1.getText().toString());
+		String title = mTitleText.getText().toString();
+		String body = mBodyText.getText().toString();
+		boolean enabled = mEnabledCB.isChecked();
+		
+		mDbHelper.updateDiy(mRowId, title, body, enabled);	
 	}	
 
 }

@@ -1,4 +1,4 @@
-package com.diyapp.kreator;
+package com.diyapp.kreator2;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -9,9 +9,9 @@ import android.widget.EditText;
 import com.diyapp.kreator2.R;
 import com.diyapp.lib.DiyDbAdapter;
 
-public class DiyEditTriggersActivity extends Activity {
-	EditText mtrigger_example_param_1;
-	CheckBox mtrigger_example_enabled;
+public class DiyEditActionsActivity extends Activity {
+	EditText maction_example_param_1;
+	CheckBox maction_example_enabled;
 	Long mRowId;
 	
 	private DiyDbAdapter mDbHelper;
@@ -24,10 +24,10 @@ public class DiyEditTriggersActivity extends Activity {
 		mDbHelper = new DiyDbAdapter(this);
 		mDbHelper.open();
 		
-		setContentView(R.layout.activity_diy_edit_triggers);
+		setContentView(R.layout.activity_diy_edit_actions);
 		setTitle(R.string.edit_diy);
-		mtrigger_example_enabled = (CheckBox) findViewById(R.id.trigger_example_enabled);
-		mtrigger_example_param_1 = (EditText) findViewById(R.id.trigger_example_param_1);
+		maction_example_enabled = (CheckBox) findViewById(R.id.action_example_enabled);
+		maction_example_param_1 = (EditText) findViewById(R.id.action_example_param_1);
 	
 		populateFields();
 
@@ -46,10 +46,10 @@ public class DiyEditTriggersActivity extends Activity {
 			Cursor diy = mDbHelper.fetchDiy(mRowId);
 			startManagingCursor(diy);
 			
-			mtrigger_example_enabled.setChecked(1 == diy.getInt(
-					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_EXAMPLE)));
-			mtrigger_example_param_1.setText(diy.getString(
-					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_EXAMPLE_PARAM_1)));
+			maction_example_enabled.setChecked(1 == diy.getInt(
+					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_EXAMPLE)));
+			maction_example_param_1.setText(diy.getString(
+					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_EXAMPLE_PARAM_1)));
 		}
 	}
 
@@ -73,8 +73,7 @@ public class DiyEditTriggersActivity extends Activity {
 	}
 	
 	private void saveState() {
-		mDbHelper.updateDiyTriggers(mRowId, mtrigger_example_enabled.isChecked(), mtrigger_example_param_1.getText().toString());
+		mDbHelper.updateDiyActions(mRowId, maction_example_enabled.isChecked(), maction_example_param_1.getText().toString());
 	}	
 
 }
-

@@ -40,7 +40,7 @@
         android:allowBackup="true"
         android:label="@string/app_name" >
         <activity
-            android:name="com.diyapp.kreator.Diy"
+            android:name="com.diyapp.kreator2.Diy"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,24 +48,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.diyapp.kreator.DiyEdit" >
+        <activity android:name="com.diyapp.kreator2.DiyEdit" >
         </activity>
-        <activity android:name="com.diyapp.kreator.AndroidTabAndListView" />
-        <activity android:name="com.diyapp.kreator.InboxActivity" />
-        <activity android:name="com.diyapp.kreator.OutboxActivity" />
-        <activity android:name="com.diyapp.kreator.ProfileActivity" />
+        <activity android:name="com.diyapp.kreator2.AndroidTabAndListView" />
         <activity
-            android:name="com.diyapp.kreator.DiyEditTriggersActivity"
+            android:name="com.diyapp.kreator2.DiyEditTriggersActivity"
             android:label="@string/title_activity_diy_edit_triggers" >
         </activity>
         <activity
-            android:name="com.diyapp.kreator.DiyEditActionsActivity"
+            android:name="com.diyapp.kreator2.DiyEditActionsActivity"
             android:label="@string/title_activity_diy_edit_actions" >
         </activity>
 
 
         <activity
-            android:name="com.diyapp.kreator.DiyMapActivity"
+            android:name="com.diyapp.kreator2.DiyMapActivity"
             android:label="@string/title_activity_diy_map" >
         </activity>
         <meta-data

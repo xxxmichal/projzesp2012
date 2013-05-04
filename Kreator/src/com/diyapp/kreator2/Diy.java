@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.diyapp.kreator;
+package com.diyapp.kreator2;
 
 import com.diyapp.kreator2.R;
 
