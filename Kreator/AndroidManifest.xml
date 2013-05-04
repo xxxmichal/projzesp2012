@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.diyapp.kreator2"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.diyapp.kreator2"
     android:sharedUserId="com.diyapp.kreator2"
     android:versionCode="1"
-    android:versionName="1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="10"
@@ -20,22 +21,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        
         <activity android:name="com.diyapp.kreator.DiyEdit" >
         </activity>
-
-
         <activity android:name="com.diyapp.kreator.AndroidTabAndListView" />
-
-
         <activity android:name="com.diyapp.kreator.InboxActivity" />
-
-
         <activity android:name="com.diyapp.kreator.OutboxActivity" />
-
-
         <activity android:name="com.diyapp.kreator.ProfileActivity" />
+        <activity
+            android:name="com.diyapp.kreator.DiyEditTriggersActivity"
+            android:label="@string/title_activity_diy_edit_triggers" >
+        </activity>
+        <activity
+            android:name="com.diyapp.kreator.DiyEditActionsActivity"
+            android:label="@string/title_activity_diy_edit_actions" >
+        </activity>
     </application>
 
 </manifest>
