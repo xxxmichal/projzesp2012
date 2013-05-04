@@ -97,11 +97,6 @@ public class DiyEdit extends Activity {
 		boolean enabled = mEnabledCB.isChecked();
 		
 		mDbHelper.updateDiy(mRowId, title, body, enabled);	
-				
-		// broadcast an update notice to Egzekutor
-		Intent intent = new Intent();
-		intent.setAction("com.example.sendbroadcast");
-		sendBroadcast(intent);
 	}	
 
 }

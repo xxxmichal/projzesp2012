@@ -97,11 +97,6 @@ public class DiyEditTriggersActivity extends Activity {
 //		}
 		boolean c = mtrigger_example_enabled.isChecked();
 		mDbHelper.updateDiyTriggers(mRowId, c);
-		
-		// broadcast an update notice to Egzekutor
-		Intent intent = new Intent();
-		intent.setAction("com.example.sendbroadcast");
-		sendBroadcast(intent);
 	}	
 
 }

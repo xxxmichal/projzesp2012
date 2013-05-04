@@ -145,6 +145,9 @@ public class Diy extends ListActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         fillData();
+		Intent i = new Intent();
+		i.setAction("com.example.sendbroadcast");
+		sendBroadcast(i);
     }
 
 }

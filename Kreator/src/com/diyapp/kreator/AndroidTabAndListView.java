@@ -106,5 +106,6 @@ public class AndroidTabAndListView extends TabActivity {
         tabHost.addTab(profileSpec); // Adding Profile tab
         */
         
-    }
+    } 
+    
 }
