@@ -35,125 +35,144 @@ import android.widget.SimpleCursorAdapter;
 import com.diyapp.lib.DiyDbAdapter;
 
 public class Diy extends ListActivity {
-    private static final int ACTIVITY_CREATE=0;
-    private static final int ACTIVITY_EDIT=1;
-    
-    private static final int INSERT_ID = Menu.FIRST;
-    private static final int DELETE_ID = Menu.FIRST + 1;
-    private static final int MAP_ID = Menu.FIRST + 2;
+	private static final int ACTIVITY_CREATE = 0;
+	private static final int ACTIVITY_EDIT = 1;
+	private static final int ACTIVITY_MAP = 2;
 
-    private DiyDbAdapter mDbHelper;
-    
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+	private static final int INSERT_ID = Menu.FIRST;
+	private static final int DELETE_ID = Menu.FIRST + 1;
+	private static final int MAP_ID = Menu.FIRST + 2;
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.diys_list);
-        mDbHelper = new DiyDbAdapter(this);
-        mDbHelper.open();
-        fillData();
-        registerForContextMenu(getListView());
-        String[] fileList = fileList();
-        
-        for (String string : fileList) {
-        	Log.v("diy",string);
-        }
-    	Log.v("diy","kreator");
+	private DiyDbAdapter mDbHelper;
 
-    }
-    
-    private void fillData() {
-        // Get all of the rows from the database and create the item list
-    	Cursor diysCursor = mDbHelper.fetchAllDiy();
-        startManagingCursor(diysCursor);
-        
-        // Create an array to specify the fields we want to display in the list (only TITLE)
-        String[] from = new String[]{DiyDbAdapter.KEY_TITLE};
-        
-        // and an array of the fields we want to bind those fields to (in this case just text1)
-        int[] to = new int[]{R.id.text1};
-        
-        // Now create a simple cursor adapter and set it to display
-        SimpleCursorAdapter diys = 
-        	    new SimpleCursorAdapter(this, R.layout.diys_row, diysCursor, from, to);
-        setListAdapter(diys);
-    }
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        menu.add(0, INSERT_ID,0, R.string.menu_insert);
-        menu.add(0, MAP_ID,0, "Map");
-        return true;
-    }
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
 
-    @Override
-    public boolean onMenuItemSelected(int featureId, MenuItem item) {
-        switch(item.getItemId()) {
-        case INSERT_ID:
-            createDiy();
-            return true;
-        case MAP_ID:
-        	Intent i = new Intent(this, DiyMapActivity.class);
-        	startActivity(i);
-        	break;
-        }
-        
-        return super.onMenuItemSelected(featureId, item);
-    }
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.diys_list);
+		mDbHelper = new DiyDbAdapter(this);
+		mDbHelper.open();
+		fillData();
+		registerForContextMenu(getListView());
+		String[] fileList = fileList();
 
-    @Override
+		for (String string : fileList) {
+			Log.v("diy", string);
+		}
+		Log.v("diy", "kreator");
+
+	}
+
+	private void fillData() {
+		// Get all of the rows from the database and create the item list
+		Cursor diysCursor = mDbHelper.fetchAllDiy();
+		startManagingCursor(diysCursor);
+
+		// Create an array to specify the fields we want to display in the list
+		// (only TITLE)
+		String[] from = new String[] { DiyDbAdapter.KEY_TITLE };
+
+		// and an array of the fields we want to bind those fields to (in this
+		// case just text1)
+		int[] to = new int[] { R.id.text1 };
+
+		// Now create a simple cursor adapter and set it to display
+		SimpleCursorAdapter diys = new SimpleCursorAdapter(this,
+				R.layout.diys_row, diysCursor, from, to);
+		setListAdapter(diys);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		menu.add(0, INSERT_ID, 0, R.string.menu_insert);
+		menu.add(0, MAP_ID, 0, "Map");
+		return true;
+	}
+
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		switch (item.getItemId()) {
+		case INSERT_ID:
+			createDiy();
+			return true;
+		case MAP_ID:
+			Intent i = new Intent(this, DiyMapActivity.class);
+			startActivityForResult(i, ACTIVITY_MAP);
+			break;
+		}
+
+		return super.onMenuItemSelected(featureId, item);
+	}
+
+	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		menu.add(0, DELETE_ID, 0, R.string.menu_delete);
-		
-        // TODO: fill in rest of method
+
+		// TODO: fill in rest of method
 	}
 
-    @Override
+	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-    	switch (item.getItemId()) {
-    	case DELETE_ID:
-    		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-    		mDbHelper.deleteDiy(info.id);
-    		fillData();
-    		return true;
-    	}
+		switch (item.getItemId()) {
+		case DELETE_ID:
+			AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
+					.getMenuInfo();
+			mDbHelper.deleteDiy(info.id);
+			fillData();
+			return true;
+		}
 		return super.onContextItemSelected(item);
-		
-        // TODO: fill in rest of method
+
+		// TODO: fill in rest of method
 	}
 
-    private void createDiy() {
-        // TODO: fill in implementation
-    	//Intent i = new Intent(this, DiyEdit.class);
-    	Intent i = new Intent(this, AndroidTabAndListView.class);
-    	startActivityForResult(i, ACTIVITY_CREATE);
+	private void createDiy() {
+		// TODO: fill in implementation
+		// Intent i = new Intent(this, DiyEdit.class);
+		Intent i = new Intent(this, AndroidTabAndListView.class);
+		startActivityForResult(i, ACTIVITY_CREATE);
 
-    }
-    
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
+	}
 
-        Intent i = new Intent(this, AndroidTabAndListView.class);
-        i.putExtra(DiyDbAdapter.KEY_ROWID, id);
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
 
-        startActivityForResult(i, ACTIVITY_EDIT);
-        
-        // TODO: fill in rest of method
-        
-    }
+		Intent i = new Intent(this, AndroidTabAndListView.class);
+		i.putExtra(DiyDbAdapter.KEY_ROWID, id);
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
-        fillData();
-		Intent i = new Intent();
-		i.setAction("com.diyapp.kreator.UPDATE");
-		sendBroadcast(i);
-    }
+		startActivityForResult(i, ACTIVITY_EDIT);
+
+		// TODO: fill in rest of method
+
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode,
+			Intent intent) {
+		super.onActivityResult(requestCode, resultCode, intent);
+
+		switch (requestCode) {
+		case ACTIVITY_MAP:
+			if (resultCode == RESULT_OK) {
+				double latitude = intent.getDoubleExtra("latitude", 0.0);
+				double longtitude = intent.getDoubleExtra("longtitude", 0.0);
+				Log.v("diy", "latitude = " + Double.toString(latitude)
+						+ " longtitude= " + Double.toString(longtitude));
+			}
+			Log.v("diy", "holy!!!");
+			break;
+		default:
+			fillData();
+			Intent i = new Intent();
+			i.setAction("com.diyapp.kreator.UPDATE");
+			sendBroadcast(i);
+			break;
+		}
+	}
 
 }

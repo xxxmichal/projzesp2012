@@ -74,6 +74,11 @@ public class DiyMapActivity extends Activity {
 	    case R.id.menu_settings:
 			CameraPosition p = map.getCameraPosition();
 			Log.v("fuuu showCurrentPos", p.target.toString());
+			Intent intent = new Intent();
+			intent.putExtra("latitude", p.target.latitude);
+			intent.putExtra("longtitude", p.target.longitude);
+			setResult(RESULT_OK, intent);
+			finish();
 	        return true;
 	    default:
 	        return super.onOptionsItemSelected(item);
@@ -85,29 +90,5 @@ public class DiyMapActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_diy_map, menu);
 		return true;
-	}
-
-	public void onClick(View v) {
-		Log.d("com.diyapp.kreator.DiyMapActivity", Integer.toString(v.getId()));
-		switch (v.getId()) {
-		case R.id.checkBox1:
-			// handle button A click;
-			CheckBox cb1 = (CheckBox) findViewById(R.id.checkBox1);
-			Log.d("com.diyapp.kreator.DiyMapActivity", "onClick R.id.checkBox1 " + cb1.isChecked());
-			break;
-		case R.id.button1:
-			Log.d("com.diyapp.kreator.DiyMapActivity", "onClick R.id.button1");
-			break;
-		case R.id.button2:
-			Log.d("com.diyapp.kreator.DiyMapActivity", "onClick R.id.button2");
-			Intent intent = new Intent(Intent.ACTION_SEND);
-			String[] recipientArray = { "abc", "cba" };
-			intent.putExtra(Intent.EXTRA_EMAIL, recipientArray);
-			intent.setType("text/plain");
-			startActivity(Intent.createChooser(intent, "hello"));
-			break;
-		default:
-			throw new RuntimeException("Unknow button ID");
-		}
 	}
 }
