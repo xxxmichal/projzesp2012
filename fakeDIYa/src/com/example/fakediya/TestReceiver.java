@@ -9,7 +9,7 @@ public class TestReceiver extends android.content.BroadcastReceiver {
 	  @Override
 	  public void onReceive(Context context, Intent intent) {
 		Log.d("blah","onReceive");
-		Toast toast = Toast.makeText(context, "Received message",	Toast.LENGTH_LONG);
+		Toast toast = Toast.makeText(context, "com.example.fakediya Received message from Kreator",	Toast.LENGTH_SHORT);
 		toast.show();
 	  }
 }
