@@ -78,6 +78,11 @@ public class FakeDIYa extends Activity {
 		this.registerReceiver(the_receiver, filter);
 		super.onResume();
 	}
+	
+	public void showDb(View v) {
+		Intent i = new Intent(this, ListDiys.class);
+		startActivity(i);
+	}
 
 	// Location savedLocation = null;
 	// LocationListener locationListener = null;
@@ -86,68 +91,9 @@ public class FakeDIYa extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		Log.v("fake", "trying DiyDbAdapter");
-        mDbHelper = new DiyDbAdapter(this);
-        mDbHelper.open();
-    	Cursor diysCursor = mDbHelper.fetchAllDiy();
-        startManagingCursor(diysCursor);
-        for ( String s : diysCursor.getColumnNames() ) {
-        	Log.v("fake", "column name " + s);	
-        }
-		
-		Context ctx = null;
-		try {
-			// creating context from mainAPP for accessing database
-			ctx = createPackageContext("com.diyapp.kreator2",
-					Context.CONTEXT_IGNORE_SECURITY);
-			if (ctx == null) {
-				Log.v("fake", "failed to get db");
-			} else {
-				Log.v("fake", "got db");
-			}
-		} catch (PackageManager.NameNotFoundException e) {
-			// package not found
-			Log.e("Error", e.getMessage());
-		}
-		SQLiteDatabase dbb;
-		Cursor cur;
-		try {
-			File myDbFile = ctx.getDatabasePath("data2");
-			if (myDbFile.exists()) {
-				dbb = openOrCreateDatabase(myDbFile.getPath(),
-						SQLiteDatabase.OPEN_READWRITE, null);
-				dbb.setVersion(1);
-				dbb.setLocale(Locale.getDefault());
-				dbb.setLockingEnabled(true);
-				try {
-					cur = dbb.rawQuery("select * from diys;", null);
-					try {
-						cur.moveToFirst();
-						int k = cur.getColumnCount();
-						String[] lv_arr = new String[k];
-						for (int i = 0; i < k; i++) {
-							lv_arr[i] = "" + cur.getString(i);
-							Toast.makeText(this, "Data " + i + " " + cur.getString(i),
-									Toast.LENGTH_SHORT).show();
-						}
-					} catch (Exception e) {
-						// may be an empty database
-						Log.e("Error", e.getMessage());
-						dbb.close();
-					}
-				} catch (Exception e) {
-					Log.e("Error", e.getMessage());
-					dbb.close();
-				}
-			} else {
-				// database not found
-				Toast.makeText(this, "DataBase Doesnot Exist",
-						Toast.LENGTH_SHORT).show();
-			}
-		} catch (Exception e) {
-			Log.i("\n\nTAG", e.toString());
-		}
 //----------
+// hello files
+		
 		File file = new File(
 				"/data/data/com.diyapp.kreator2/files/test_kreator.txt");
 		if (!file.exists()) {
@@ -157,31 +103,7 @@ public class FakeDIYa extends Activity {
 				e.printStackTrace();
 			}
 		}
-		File file2 = new File(getFilesDir().getPath() + "/test_fake2.txt");
-		Log.v("diy", "getFilesDir().getPath() = " + getFilesDir().getPath());
-		if (!file2.exists()) {
-			Log.v("diy", "fake creating file");
-			try {
-				file2.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		String[] fileList = fileList();
-		for (String string : fileList) {
-			Log.v("diy", string);
-		}
-		Log.v("diy", "fake");
-
-		PackageManager m = getPackageManager();
-		String s = getPackageName();
-		try {
-			PackageInfo p = m.getPackageInfo(s, 0);
-			s = p.applicationInfo.dataDir;
-			Log.w("yourtag", s);
-		} catch (NameNotFoundException e) {
-			Log.w("yourtag", "Error Package name not found ", e);
-		}
+//------
 
 		setContentView(R.layout.activity_fake_diya);
 
