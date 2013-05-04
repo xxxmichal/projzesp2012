@@ -22,7 +22,7 @@
 
         <receiver android:name="com.example.fakediya.TestReceiver" >
             <intent-filter>
-                <action android:name="com.example.sendbroadcast" >
+                <action android:name="com.diyapp.kreator.UPDATE" >
                 </action>
             </intent-filter>
         </receiver>

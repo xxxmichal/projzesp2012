@@ -146,7 +146,7 @@ public class Diy extends ListActivity {
         super.onActivityResult(requestCode, resultCode, intent);
         fillData();
 		Intent i = new Intent();
-		i.setAction("com.example.sendbroadcast");
+		i.setAction("com.diyapp.kreator.UPDATE");
 		sendBroadcast(i);
     }
 
