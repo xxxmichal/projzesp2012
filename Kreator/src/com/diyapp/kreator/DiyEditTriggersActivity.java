@@ -1,19 +1,13 @@
 package com.diyapp.kreator;
 
-import com.diyapp.kreator2.R;
-import com.diyapp.kreator2.R.layout;
-import com.diyapp.kreator2.R.menu;
-import com.diyapp.lib.DiyDbAdapter;
-
-import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
 import android.database.Cursor;
-import android.view.Menu;
-import android.view.View;
-import android.widget.Button;
+import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.EditText;
+
+import com.diyapp.kreator2.R;
+import com.diyapp.lib.DiyDbAdapter;
 
 public class DiyEditTriggersActivity extends Activity {
 	EditText mtrigger_example_param_1;
@@ -79,19 +73,6 @@ public class DiyEditTriggersActivity extends Activity {
 	}
 	
 	private void saveState() {
-//		String title = mTitleText.getText().toString();
-//		String body = mBodyText.getText().toString();
-//		boolean enabled = mEnabledCB.isChecked();
-//		String trigger_example = "trig1";
-//		
-//		if (mRowId == null) {
-//			long id = mDbHelper.createDiy(title, body, enabled, trigger_example);
-//			if ( id > 0 ) {
-//				mRowId = id;
-//			}
-//		} else {
-//			mDbHelper.updateDiy(mRowId, title, body, enabled, trigger_example);
-//		}
 		mDbHelper.updateDiyTriggers(mRowId, mtrigger_example_enabled.isChecked(), mtrigger_example_param_1.getText().toString());
 	}	
 
