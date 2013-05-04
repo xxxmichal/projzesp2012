@@ -95,18 +95,9 @@ public class DiyEdit extends Activity {
 		String title = mTitleText.getText().toString();
 		String body = mBodyText.getText().toString();
 		boolean enabled = mEnabledCB.isChecked();
-		String trigger_example = "trig1";
 		
-		if (mRowId == null) {
-			long id = mDbHelper.createDiy(title, body, enabled, trigger_example);
-			if ( id > 0 ) {
-				mRowId = id;
-			}
-		} else {
-			mDbHelper.updateDiy(mRowId, title, body, enabled, trigger_example);
-		}
-		
-		
+		mDbHelper.updateDiy(mRowId, title, body, enabled);	
+				
 		// broadcast an update notice to Egzekutor
 		Intent intent = new Intent();
 		intent.setAction("com.example.sendbroadcast");

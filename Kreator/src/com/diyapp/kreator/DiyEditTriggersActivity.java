@@ -17,8 +17,8 @@ import android.widget.EditText;
 
 public class DiyEditTriggersActivity extends Activity {
 	EditText mTitleText;
-	EditText mBodyText;
-	CheckBox mEnabledCB;
+	EditText mtrigger_example_param_1;
+	CheckBox mtrigger_example_enabled;
 	Long mRowId;
 	
 	private DiyDbAdapter mDbHelper;
@@ -33,7 +33,8 @@ public class DiyEditTriggersActivity extends Activity {
 		
 		setContentView(R.layout.activity_diy_edit_triggers);
 		setTitle(R.string.edit_diy);
-		mTitleText = (EditText) findViewById(R.id.title);
+		mtrigger_example_enabled = (CheckBox) findViewById(R.id.trigger_example_enabled);
+		mtrigger_example_param_1 = (EditText) findViewById(R.id.trigger_example_param_1);
 	
 		populateFields();
 
@@ -56,8 +57,8 @@ public class DiyEditTriggersActivity extends Activity {
 //					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_TITLE)));
 //			mBodyText.setText(diy.getString(
 //					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_BODY)));
-//			mEnabledCB.setChecked(1 == diy.getInt(
-//					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ENABLED)));
+			mtrigger_example_enabled.setChecked(1 == diy.getInt(
+					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_EXAMPLE)));
 		}
 	}
 
@@ -94,7 +95,8 @@ public class DiyEditTriggersActivity extends Activity {
 //		} else {
 //			mDbHelper.updateDiy(mRowId, title, body, enabled, trigger_example);
 //		}
-		
+		boolean c = mtrigger_example_enabled.isChecked();
+		mDbHelper.updateDiyTriggers(mRowId, c);
 		
 		// broadcast an update notice to Egzekutor
 		Intent intent = new Intent();

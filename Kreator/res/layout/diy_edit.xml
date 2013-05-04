@@ -3,7 +3,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="match_parent"
 	android:layout_height="match_parent">
-	
+
+    	
+	<CheckBox
+	    android:id="@+id/enabled"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="Enabled" />
+    	
 	<LinearLayout android:orientation="horizontal"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
@@ -21,6 +28,7 @@
 		android:layout_height="wrap_content" 
 		android:text="@string/body" />
 
+	
 	<EditText
 	    android:id="@+id/body"
 	    android:layout_width="match_parent"
@@ -28,12 +36,7 @@
 	    android:layout_weight="0.79"
 	    android:scrollbars="vertical" />
 
-	<CheckBox
-	    android:id="@+id/enabled"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="Enabled" />
-	
+
 	<Button android:id="@+id/confirm" 
 	  android:text="@string/confirm"
 		android:layout_width="wrap_content"

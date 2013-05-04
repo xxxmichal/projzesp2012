@@ -132,7 +132,7 @@ public class Diy extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        Intent i = new Intent(this, DiyEdit.class);
+        Intent i = new Intent(this, AndroidTabAndListView.class);
         i.putExtra(DiyDbAdapter.KEY_ROWID, id);
 
         startActivityForResult(i, ACTIVITY_EDIT);

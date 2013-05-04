@@ -103,12 +103,12 @@ public class DiyDbAdapter {
      * @param body the body of the diy
      * @return rowId or -1 if failed
      */
-    public long createDiy(String title, String body, boolean enabled, String trigger_example) {
+    public long createDiy(String title, String body, boolean enabled) {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_TITLE, title);
         initialValues.put(KEY_BODY, body);
         initialValues.put(KEY_ENABLED, enabled ? 1 : 0);
-        initialValues.put(KEY_TRIGGER_EXAMPLE, trigger_example);
+        initialValues.put(KEY_TRIGGER_EXAMPLE, 0);
 
         return mDb.insert(DATABASE_TABLE, null, initialValues);
     }
@@ -166,12 +166,18 @@ public class DiyDbAdapter {
      * @param body value to set diy body to
      * @return true if the diy was successfully updated, false otherwise
      */
-    public boolean updateDiy(long rowId, String title, String body, boolean enabled, String trigger_example) {
+    public boolean updateDiy(long rowId, String title, String body, boolean enabled) {
         ContentValues args = new ContentValues();
         args.put(KEY_TITLE, title);
         args.put(KEY_BODY, body);
         args.put(KEY_ENABLED, enabled  ? 1 : 0);
-        args.put(KEY_TRIGGER_EXAMPLE, trigger_example);
+
+        return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
+    }
+    
+    public boolean updateDiyTriggers(long rowId, boolean trigger_example_enabled) {
+        ContentValues args = new ContentValues();
+        args.put(KEY_TRIGGER_EXAMPLE, trigger_example_enabled ? 1 : 0);
 
         return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     }

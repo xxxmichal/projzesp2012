@@ -1,6 +1,7 @@
 package com.diyapp.kreator;
 
 import com.diyapp.kreator2.R;
+import com.diyapp.lib.DiyDbAdapter;
 
 import android.app.TabActivity;
 import android.content.Intent;
@@ -21,11 +22,29 @@ public class AndroidTabAndListView extends TabActivity {
 	private static final String PROFILE_SPEC = "Profile";
 	*/
 	
+	Long mRowId;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
+        DiyDbAdapter dbHelper = new DiyDbAdapter(this);
+		dbHelper.open();
+        
+		if (mRowId == null) {
+			Bundle extras = getIntent().getExtras();
+			mRowId = extras != null ? extras.getLong(DiyDbAdapter.KEY_ROWID)
+									: null;
+		}
+		
+		if (mRowId == null) {
+			long id = dbHelper.createDiy("diy", "", false);
+			if ( id > 0 ) {
+				mRowId = id;
+			}
+		} 
+		
         TabHost tabHost = getTabHost();
         
         // Tab
@@ -33,22 +52,25 @@ public class AndroidTabAndListView extends TabActivity {
         // Tab Icon
         diyEditSpec.setIndicator(DIYEDIT_SPEC, getResources().getDrawable(R.drawable.icon_inbox));
         Intent diyEditIntent = new Intent(this, DiyEdit.class);
+        diyEditIntent.putExtra(DiyDbAdapter.KEY_ROWID, mRowId);
         // Tab Content
         diyEditSpec.setContent(diyEditIntent);
         
         // Tab
-        TabSpec diyEditTriggersSpec = tabHost.newTabSpec(DIYEDITACTIONS_SPEC);
+        TabSpec diyEditTriggersSpec = tabHost.newTabSpec(DIYEDITTRIGGERS_SPEC);
         // Tab Icon
-        diyEditTriggersSpec.setIndicator(DIYEDITACTIONS_SPEC, getResources().getDrawable(R.drawable.icon_inbox));
+        diyEditTriggersSpec.setIndicator(DIYEDITTRIGGERS_SPEC, getResources().getDrawable(R.drawable.icon_inbox));
         Intent diyEditTriggersIntent = new Intent(this, DiyEditTriggersActivity.class);
+        diyEditTriggersIntent.putExtra(DiyDbAdapter.KEY_ROWID, mRowId);
         // Tab Content
         diyEditTriggersSpec.setContent(diyEditTriggersIntent);
         
         // Tab
-        TabSpec diyEditActionsSpec = tabHost.newTabSpec(DIYEDITTRIGGERS_SPEC);
+        TabSpec diyEditActionsSpec = tabHost.newTabSpec(DIYEDITACTIONS_SPEC);
         // Tab Icon
-        diyEditActionsSpec.setIndicator(DIYEDITTRIGGERS_SPEC, getResources().getDrawable(R.drawable.icon_inbox));
+        diyEditActionsSpec.setIndicator(DIYEDITACTIONS_SPEC, getResources().getDrawable(R.drawable.icon_inbox));
         Intent diyEditActionsIntent = new Intent(this, DiyEditActionsActivity.class);
+        diyEditActionsIntent.putExtra(DiyDbAdapter.KEY_ROWID, mRowId);
         // Tab Content
         diyEditActionsSpec.setContent(diyEditActionsIntent);
         
