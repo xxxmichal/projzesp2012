@@ -16,12 +16,6 @@ public class AndroidTabAndListView extends TabActivity {
 	private static final String DIYEDITTRIGGERS_SPEC = "Triggers";
 	private static final String DIYEDITACTIONS_SPEC = "Actions";
 
-	/*
-	private static final String INBOX_SPEC = "Inbox";
-	private static final String OUTBOX_SPEC = "Outbox";
-	private static final String PROFILE_SPEC = "Profile";
-	*/
-	
 	Long mRowId;
 	
     @Override
@@ -74,37 +68,10 @@ public class AndroidTabAndListView extends TabActivity {
         // Tab Content
         diyEditActionsSpec.setContent(diyEditActionsIntent);
         
-        /*
-        // Inbox Tab
-        TabSpec inboxSpec = tabHost.newTabSpec(INBOX_SPEC);
-        // Tab Icon
-        inboxSpec.setIndicator(INBOX_SPEC, getResources().getDrawable(R.drawable.icon_inbox));
-        Intent inboxIntent = new Intent(this, InboxActivity.class);
-        // Tab Content
-        inboxSpec.setContent(inboxIntent);
-        
-        
-        // Outbox Tab
-        TabSpec outboxSpec = tabHost.newTabSpec(OUTBOX_SPEC);
-        outboxSpec.setIndicator(OUTBOX_SPEC, getResources().getDrawable(R.drawable.icon_outbox));
-        Intent outboxIntent = new Intent(this, OutboxActivity.class);
-        outboxSpec.setContent(outboxIntent);
-        
-        // Profile Tab
-        TabSpec profileSpec = tabHost.newTabSpec(PROFILE_SPEC);
-        profileSpec.setIndicator(PROFILE_SPEC, getResources().getDrawable(R.drawable.icon_profile));
-        Intent profileIntent = new Intent(this, ProfileActivity.class);
-        profileSpec.setContent(profileIntent);
-        */
         // Adding all TabSpec to TabHost
         tabHost.addTab(diyEditSpec); // Adding Edit tab
         tabHost.addTab(diyEditTriggersSpec); // Adding Edit tab
         tabHost.addTab(diyEditActionsSpec); // Adding Edit tab
-        /*
-        tabHost.addTab(inboxSpec); // Adding Inbox tab
-        tabHost.addTab(outboxSpec); // Adding Outbox tab
-        tabHost.addTab(profileSpec); // Adding Profile tab
-        */
         
     } 
     
