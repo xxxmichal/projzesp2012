@@ -1,5 +1,6 @@
 package com.example.fakediya;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
@@ -13,7 +14,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
@@ -24,6 +30,7 @@ import android.net.Uri;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,50 +38,39 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fakediya2.R;
+
+import com.diyapp.lib.DiyDbAdapter;
+
 public class FakeDIYa extends Activity {
-
-
-
-	private BroadcastReceiver the_receiver = new BroadcastReceiver() {
-		@Override
-		public void onReceive(Context c, Intent i) {
-			int orientation = getBaseContext().getResources()
-					.getConfiguration().orientation;
-			if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-				Toast.makeText(getBaseContext(), "I'm still standing.",
-						Toast.LENGTH_SHORT).show();
-			} else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-				Toast.makeText(getBaseContext(),
-						"Help! I've fallen and I can't get up.",
-						Toast.LENGTH_SHORT).show();
-			} else {
-				Toast.makeText(getBaseContext(), "?!#$%!?", Toast.LENGTH_SHORT)
-						.show();
-			}
-		}
-	};
-	private IntentFilter filter = new IntentFilter(Intent.ACTION_CONFIGURATION_CHANGED);
 	
-	@Override
-	protected void onPause() {
-
-		this.unregisterReceiver(the_receiver);
-		super.onPause();
+	public void showDb(View v) {
+		Intent i = new Intent(this, ListDiys.class);
+		startActivity(i);
 	}
 
-	@Override
-	protected void onResume() {
-		this.registerReceiver(the_receiver, filter);
-		super.onResume();
-	}
 	// Location savedLocation = null;
 	// LocationListener locationListener = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_fake_diya);
 
+//----------
+// hello files
+		
+		File file = new File(
+				"/data/data/com.diyapp.kreator2/files/test_kreator.txt");
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+//------
+
+		setContentView(R.layout.activity_fake_diya);
 
 		Button buttonTime = (Button) findViewById(R.id.buttonTime);
 		Button buttonIsWifi = (Button) findViewById(R.id.buttonIsWifi);

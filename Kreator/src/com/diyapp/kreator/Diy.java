@@ -16,7 +16,7 @@
 
 package com.diyapp.kreator;
 
-import com.diyapp.kreator.R;
+import com.diyapp.kreator2.R;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -31,6 +31,8 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+
+import com.diyapp.lib.DiyDbAdapter;
 
 public class Diy extends ListActivity {
     private static final int ACTIVITY_CREATE=0;
@@ -56,7 +58,7 @@ public class Diy extends ListActivity {
         for (String string : fileList) {
         	Log.v("diy",string);
         }
-    	Log.v("diy","hello");
+    	Log.v("diy","kreator");
 
     }
     

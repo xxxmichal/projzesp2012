@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.fakediya"
+    android:sharedUserId="com.diyapp.kreator2" 
+    package="com.example.fakediya2"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -19,7 +20,7 @@
 
     <application>
 
-        <receiver android:name="TestReceiver" >
+        <receiver android:name="com.example.fakediya.TestReceiver" >
             <intent-filter>
                 <action android:name="com.example.sendbroadcast" >
                 </action>
@@ -38,6 +39,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.fakediya.ListDiys"></activity>
     </application>
 
 </manifest>

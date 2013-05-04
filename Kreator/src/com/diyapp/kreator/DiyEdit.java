@@ -1,6 +1,6 @@
 package com.diyapp.kreator;
 
-import com.diyapp.kreator.R;
+import com.diyapp.kreator2.R;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.diyapp.lib.DiyDbAdapter;
 
 public class DiyEdit extends Activity {
 	EditText mTitleText;

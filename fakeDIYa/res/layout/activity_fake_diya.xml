@@ -102,4 +102,14 @@
         android:text="Text GPS"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonGPS"
+        android:layout_alignBottom="@+id/buttonGPS"
+        android:layout_toRightOf="@+id/buttonGPS"
+        android:onClick="showDb"
+        android:text="DB" />
+
 </RelativeLayout>
