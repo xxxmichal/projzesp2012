@@ -19,13 +19,23 @@ import android.util.Log;
  * recommended).
  */
 public class DiyDbAdapter {
+	// increase version after modifying columns, clean and rebuild library AND project!
+    private static final int DATABASE_VERSION = 6;
+    
+    private static final String DATABASE_NAME = "data2";
+    private static final String DATABASE_TABLE = "diys";
 
+	
     public static final String KEY_TITLE = "title";
     public static final String KEY_BODY = "body";
     public static final String KEY_ENABLED = "enabled";
     public static final String KEY_TRIGGER_EXAMPLE = "trigger_example";
+    public static final String KEY_TRIGGER_EXAMPLE_PARAM_1 = "trigger_example_param_1";
     public static final String KEY_ROWID = "_id";
 
+    public static final String[] COLUMNS = new String[] {KEY_ROWID,
+            KEY_TITLE, KEY_BODY, KEY_ENABLED, KEY_TRIGGER_EXAMPLE,KEY_TRIGGER_EXAMPLE_PARAM_1};
+    
     private static final String TAG = "DiyDbAdapter";
     private DatabaseHelper mDbHelper;
     private SQLiteDatabase mDb;
@@ -34,12 +44,15 @@ public class DiyDbAdapter {
      * Database creation sql statement
      */
     private static final String DATABASE_CREATE =
-        "create table diys (_id integer primary key autoincrement, "
-        + "title text not null, body text not null, enabled integer not null, trigger_example text not null);";
+        "create table " + DATABASE_TABLE + " ( "
+        + KEY_ROWID + " integer primary key autoincrement, "
+        + KEY_TITLE + " text not null, "
+        + KEY_BODY + " text not null, enabled integer not null, " 
+        + KEY_TRIGGER_EXAMPLE + " integer not null, "
+        + KEY_TRIGGER_EXAMPLE_PARAM_1 + " text not null "
+        + ");";
 
-    private static final String DATABASE_NAME = "data2";
-    private static final String DATABASE_TABLE = "diys";
-    private static final int DATABASE_VERSION = 4; // increase version after modifying columns 
+
 
     private final Context mCtx;
 
@@ -59,7 +72,7 @@ public class DiyDbAdapter {
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
                     + newVersion + ", which will destroy all old data");
-            db.execSQL("DROP TABLE IF EXISTS diys");
+            db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
             onCreate(db);
         }
     }
@@ -109,6 +122,7 @@ public class DiyDbAdapter {
         initialValues.put(KEY_BODY, body);
         initialValues.put(KEY_ENABLED, enabled ? 1 : 0);
         initialValues.put(KEY_TRIGGER_EXAMPLE, 0);
+        initialValues.put(KEY_TRIGGER_EXAMPLE_PARAM_1, "");
 
         return mDb.insert(DATABASE_TABLE, null, initialValues);
     }
@@ -131,8 +145,7 @@ public class DiyDbAdapter {
      */
     public Cursor fetchAllDiy() {
 
-        return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_TITLE,
-                KEY_BODY, KEY_ENABLED, KEY_TRIGGER_EXAMPLE}, null, null, null, null, null);
+        return mDb.query(DATABASE_TABLE, COLUMNS, null, null, null, null, null);
     }
 
     /**
@@ -146,8 +159,7 @@ public class DiyDbAdapter {
 
         Cursor mCursor =
 
-            mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-                    KEY_TITLE, KEY_BODY, KEY_ENABLED, KEY_TRIGGER_EXAMPLE}, KEY_ROWID + "=" + rowId, null,
+            mDb.query(true, DATABASE_TABLE, COLUMNS, KEY_ROWID + "=" + rowId, null,
                     null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -175,9 +187,10 @@ public class DiyDbAdapter {
         return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     }
     
-    public boolean updateDiyTriggers(long rowId, boolean trigger_example_enabled) {
+    public boolean updateDiyTriggers(long rowId, boolean trigger_example_enabled, String trigger_example_param_1) {
         ContentValues args = new ContentValues();
         args.put(KEY_TRIGGER_EXAMPLE, trigger_example_enabled ? 1 : 0);
+        args.put(KEY_TRIGGER_EXAMPLE_PARAM_1, trigger_example_param_1);
 
         return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     }

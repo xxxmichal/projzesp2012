@@ -16,7 +16,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 public class DiyEditTriggersActivity extends Activity {
-	EditText mTitleText;
 	EditText mtrigger_example_param_1;
 	CheckBox mtrigger_example_enabled;
 	Long mRowId;
@@ -53,12 +52,10 @@ public class DiyEditTriggersActivity extends Activity {
 			Cursor diy = mDbHelper.fetchDiy(mRowId);
 			startManagingCursor(diy);
 			
-//			mTitleText.setText(diy.getString(
-//					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_TITLE)));
-//			mBodyText.setText(diy.getString(
-//					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_BODY)));
 			mtrigger_example_enabled.setChecked(1 == diy.getInt(
 					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_EXAMPLE)));
+			mtrigger_example_param_1.setText(diy.getString(
+					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_EXAMPLE_PARAM_1)));
 		}
 	}
 
@@ -95,8 +92,7 @@ public class DiyEditTriggersActivity extends Activity {
 //		} else {
 //			mDbHelper.updateDiy(mRowId, title, body, enabled, trigger_example);
 //		}
-		boolean c = mtrigger_example_enabled.isChecked();
-		mDbHelper.updateDiyTriggers(mRowId, c);
+		mDbHelper.updateDiyTriggers(mRowId, mtrigger_example_enabled.isChecked(), mtrigger_example_param_1.getText().toString());
 	}	
 
 }
