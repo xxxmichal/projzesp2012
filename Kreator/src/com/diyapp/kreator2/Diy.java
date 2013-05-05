@@ -41,7 +41,6 @@ public class Diy extends ListActivity {
 
 	private static final int INSERT_ID = Menu.FIRST;
 	private static final int DELETE_ID = Menu.FIRST + 1;
-	private static final int MAP_ID = Menu.FIRST + 2;
 
 	private DiyDbAdapter mDbHelper;
 
@@ -87,7 +86,6 @@ public class Diy extends ListActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		menu.add(0, INSERT_ID, 0, R.string.menu_insert);
-		menu.add(0, MAP_ID, 0, "Map");
 		return true;
 	}
 
@@ -97,10 +95,6 @@ public class Diy extends ListActivity {
 		case INSERT_ID:
 			createDiy();
 			return true;
-		case MAP_ID:
-			Intent i = new Intent(this, DiyMapActivity.class);
-			startActivityForResult(i, ACTIVITY_MAP);
-			break;
 		}
 
 		return super.onMenuItemSelected(featureId, item);
@@ -157,15 +151,6 @@ public class Diy extends ListActivity {
 		super.onActivityResult(requestCode, resultCode, intent);
 
 		switch (requestCode) {
-		case ACTIVITY_MAP:
-			if (resultCode == RESULT_OK) {
-				double latitude = intent.getDoubleExtra("latitude", 0.0);
-				double longtitude = intent.getDoubleExtra("longtitude", 0.0);
-				Log.v("diy", "latitude = " + Double.toString(latitude)
-						+ " longtitude= " + Double.toString(longtitude));
-			}
-			Log.v("diy", "holy!!!");
-			break;
 		default:
 			fillData();
 			Intent i = new Intent();
