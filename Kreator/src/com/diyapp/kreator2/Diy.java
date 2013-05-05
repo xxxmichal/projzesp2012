@@ -159,7 +159,7 @@ public class Diy extends ListActivity {
 		switch (requestCode) {
 		case ACTIVITY_MAP:
 			if (resultCode == RESULT_OK) {
-				double latitude = intent.getDoubleExtra("latitude", 0.0);
+				double latitude = intent.getDoubleExtra("latitude", 0.1);
 				double longtitude = intent.getDoubleExtra("longtitude", 0.0);
 				Log.v("diy", "latitude = " + Double.toString(latitude)
 						+ " longtitude= " + Double.toString(longtitude));

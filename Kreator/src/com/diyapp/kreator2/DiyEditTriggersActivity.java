@@ -21,9 +21,12 @@ public class DiyEditTriggersActivity extends Activity {
 	EditText mtrigger_example_param_1;
 
 	CheckBox mtrigger_location_enabled;
-	EditText mtrigger_location_param_latitude;
-	EditText mtrigger_location_param_longtitude;
+	static EditText mtrigger_location_param_latitude;
+	static EditText mtrigger_location_param_longtitude;
 	EditText mtrigger_location_param_area;
+
+	static double var_latitude = -1;
+	static double var_longtitude = -1;
 
 	Long mRowId;
 
@@ -49,6 +52,12 @@ public class DiyEditTriggersActivity extends Activity {
 		mtrigger_location_param_longtitude = (EditText) findViewById(R.id.trigger_location_param_longtitude);
 		mtrigger_location_param_area = (EditText) findViewById(R.id.trigger_location_param_area);
 
+		// disable
+//		mtrigger_location_param_latitude
+//				.setVisibility(mtrigger_location_param_latitude.INVISIBLE);
+//		mtrigger_location_param_longtitude
+//				.setVisibility(mtrigger_location_param_longtitude.INVISIBLE);
+
 		populateFields();
 
 		mRowId = (savedInstanceState == null) ? null
@@ -60,6 +69,14 @@ public class DiyEditTriggersActivity extends Activity {
 			mRowId = extras != null ? extras.getLong(DiyDbAdapter.KEY_ROWID)
 					: null;
 		}
+
+//		Toast toast = Toast.makeText(this, "var_latitude " + var_latitude
+//				+ " var_latitude " + var_latitude, Toast.LENGTH_SHORT);
+//		toast.show();
+		
+		Log.v("DiyEditTriggersActivity onCreate", "var_latitude " + var_latitude
+				+ " var_latitude " + var_latitude);
+		
 	}
 
 	private void populateFields() {
@@ -76,12 +93,34 @@ public class DiyEditTriggersActivity extends Activity {
 
 			mtrigger_location_enabled.setChecked(1 == diy.getInt(diy
 					.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_LOCATION)));
+			if ( var_latitude == -1 ) {
+				var_latitude = diy
+						.getDouble(diy
+								.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_LOCATION_PARAM_LATITUDE));
+				var_longtitude = diy
+						.getDouble(diy
+								.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE));
+//				Toast toast = Toast.makeText(this, "populate var_latitude " + var_latitude
+//						+ " var_latitude " + var_latitude, Toast.LENGTH_SHORT);
+//				toast.show();
+			}
+			// unable to update theses 2
 			mtrigger_location_param_latitude
 					.setText(Double.toString(diy.getDouble(diy
 							.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_LOCATION_PARAM_LATITUDE))));
 			mtrigger_location_param_longtitude
 					.setText(Double.toString(diy.getDouble(diy
 							.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE))));
+			// --
+			
+			
+			 //this things are not updating because we are not in a view!
+			 mtrigger_location_param_latitude.setText(Double
+			 .toString(var_latitude));
+			 DiyEditTriggersActivity.this.mtrigger_location_param_longtitude
+			 .setText(Double .toString(var_longtitude));
+			 
+
 			mtrigger_location_param_area
 					.setText(Double.toString(diy.getDouble(diy
 							.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_LOCATION_PARAM_AREA))));
@@ -114,10 +153,14 @@ public class DiyEditTriggersActivity extends Activity {
 				mtrigger_example_enabled.isChecked(), //
 				mtrigger_example_param_1.getText().toString(),
 				mtrigger_location_enabled.isChecked(), //
-				Double.parseDouble(mtrigger_location_param_latitude.getText()
-						.toString()), //
-				Double.parseDouble(mtrigger_location_param_longtitude.getText()
-						.toString()), //
+				var_latitude, //
+				var_longtitude, //
+				/*
+				 * Double.parseDouble(mtrigger_location_param_latitude.getText()
+				 * .toString()), //
+				 * Double.parseDouble(mtrigger_location_param_longtitude
+				 * .getText() .toString()), //
+				 */
 				Double.parseDouble(mtrigger_location_param_area.getText()
 						.toString()) //
 				); //
@@ -136,23 +179,32 @@ public class DiyEditTriggersActivity extends Activity {
 		switch (requestCode) {
 		case ACTIVITY_MAP:
 			if (resultCode == RESULT_OK) {
-				double latitude = intent.getDoubleExtra("latitude", 0.0);
+				double latitude = intent.getDoubleExtra("latitude", 0.2);
 				double longtitude = intent.getDoubleExtra("longtitude", 0.0);
 				Log.v("diy", "latitude = " + Double.toString(latitude)
 						+ " longtitude= " + Double.toString(longtitude));
-				mtrigger_location_param_latitude.setText(Double
-						.toString(latitude));
-				DiyEditTriggersActivity.this.mtrigger_location_param_longtitude.setText(Double
-						.toString(longtitude));
-				DiyEditTriggersActivity.this.mtrigger_location_param_area.setText("50");
-				DiyEditTriggersActivity.this.mtrigger_location_param_area.postInvalidate();
-				Toast toast = Toast.makeText(this,
-						"latitude " + mtrigger_location_param_latitude.getText().toString()
-						+ " longtitude " + mtrigger_location_param_longtitude.getText().toString(), Toast.LENGTH_SHORT);
-				toast.show();
-				
-				mtrigger_location_param_area.setVisibility(mtrigger_location_param_area.VISIBLE);
-				Log.v("diy", "la");
+
+				/*
+				 * //this things are not updating because we are not in a view!
+				 * mtrigger_location_param_latitude.setText(Double
+				 * .toString(latitude));
+				 * DiyEditTriggersActivity.this.mtrigger_location_param_longtitude
+				 * .setText(Double .toString(longtitude));
+				 * DiyEditTriggersActivity
+				 * .this.mtrigger_location_param_area.setText("50");
+				 * DiyEditTriggersActivity
+				 * .this.mtrigger_location_param_area.postInvalidate();
+				 */
+
+				var_latitude = latitude;
+				var_longtitude = longtitude;
+
+//				Toast toast = Toast.makeText(this, "latitude "
+//						+ Double.toString(var_latitude) 
+//						+ " longtitude "
+//						+ Double.toString(var_longtitude), Toast.LENGTH_SHORT);
+//				toast.show();
+
 			}
 			break;
 		default:
