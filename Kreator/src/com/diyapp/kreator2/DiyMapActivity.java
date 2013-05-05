@@ -7,6 +7,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -16,13 +17,15 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 
-public class DiyMapActivity extends Activity {
+public class DiyMapActivity extends FragmentActivity {
 
 	static final LatLng WARSAW = new LatLng(52.136, 21.003);
 	
@@ -32,6 +35,12 @@ public class DiyMapActivity extends Activity {
 	
 	private GoogleMap map;
 
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_diy_map);
+//    }
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,26 +55,28 @@ public class DiyMapActivity extends Activity {
 		
 		GoogleMapOptions options = new GoogleMapOptions();
 
-		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
+		map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
 				.getMap();
 		
 		if (var_latitude > 0.0) {
-			Marker kiel = map.addMarker(new MarkerOptions()
+			Marker lastpos = map.addMarker(new MarkerOptions()
 					.position(var_lastpos)
 					.title("Last")
 					.snippet("Last selected position")
 					.icon(BitmapDescriptorFactory
 							.fromResource(R.drawable.ic_launcher)));
 			map.moveCamera(CameraUpdateFactory.newLatLngZoom(var_lastpos, 15));
+		} else {
+			map.moveCamera(CameraUpdateFactory.newLatLngZoom(WARSAW, 5));
 		}
 		map.setMyLocationEnabled(true);
 
 		// Zoom in, animating the camera.
 		map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
 		CameraPosition p = map.getCameraPosition();
+		
 	}
 
-	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle item selection
