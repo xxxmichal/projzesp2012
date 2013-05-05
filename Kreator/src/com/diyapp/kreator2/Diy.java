@@ -63,6 +63,13 @@ public class Diy extends ListActivity {
 
 	}
 
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		if (mDbHelper != null)
+			mDbHelper.close();
+	}
+
 	private void fillData() {
 		// Get all of the rows from the database and create the item list
 		Cursor diysCursor = mDbHelper.fetchAllDiy();
