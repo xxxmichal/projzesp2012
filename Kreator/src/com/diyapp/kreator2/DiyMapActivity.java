@@ -24,46 +24,45 @@ import android.widget.CheckBox;
 
 public class DiyMapActivity extends Activity {
 
-	static final LatLng HAMBURG = new LatLng(53.558, 9.927);
-	static final LatLng KIEL = new LatLng(53.551, 9.993);
 	static final LatLng WARSAW = new LatLng(52.136, 21.003);
+	
+	static double var_latitude = -1;
+	static double var_longtitude = -1;
+	static LatLng var_lastpos = null;
+	
 	private GoogleMap map;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		var_latitude = getIntent().getExtras().getDouble("latitude");
+		var_longtitude = getIntent().getExtras().getDouble("longtitude");
+		var_lastpos = new LatLng(var_latitude, var_longtitude);
 
 		Log.d("com.diyapp.kreator.DiyMapActivity", "onCreated called");
 
 		setContentView(R.layout.activity_diy_map);
 		
 		GoogleMapOptions options = new GoogleMapOptions();
-//		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
-//				.getMap();
 
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
 				.getMap();
 		
-		Marker hamburg = map.addMarker(new MarkerOptions().position(HAMBURG)
-				.title("Hamburg"));
-		Marker warsaw = map.addMarker(new MarkerOptions().position(WARSAW)
-				.title("Warsaw"));
-		Marker kiel = map.addMarker(new MarkerOptions()
-				.position(KIEL)
-				.title("Kiel")
-				.snippet("Kiel is cool")
-				.icon(BitmapDescriptorFactory
-						.fromResource(R.drawable.ic_launcher)));
+		if (var_latitude > 0.0) {
+			Marker kiel = map.addMarker(new MarkerOptions()
+					.position(var_lastpos)
+					.title("Last")
+					.snippet("Last selected position")
+					.icon(BitmapDescriptorFactory
+							.fromResource(R.drawable.ic_launcher)));
+			map.moveCamera(CameraUpdateFactory.newLatLngZoom(var_lastpos, 15));
+		}
 		map.setMyLocationEnabled(true);
-		// Move the camera instantly to hamburg with a zoom of 15.
-		map.moveCamera(CameraUpdateFactory.newLatLngZoom(HAMBURG, 15));
-		map.moveCamera(CameraUpdateFactory.newLatLngZoom(WARSAW, 15));
 
 		// Zoom in, animating the camera.
 		map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
 		CameraPosition p = map.getCameraPosition();
-		Log.v("fuuu", p.target.toString());
 	}
 
 	
@@ -71,9 +70,8 @@ public class DiyMapActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle item selection
 	    switch (item.getItemId()) {
-	    case R.id.menu_settings:
+	    case R.id.menu_select_position:
 			CameraPosition p = map.getCameraPosition();
-			Log.v("fuuu showCurrentPos", p.target.toString());
 			Intent intent = new Intent();
 			intent.putExtra("latitude", p.target.latitude);
 			intent.putExtra("longtitude", p.target.longitude);

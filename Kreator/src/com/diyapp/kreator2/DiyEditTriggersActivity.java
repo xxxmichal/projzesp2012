@@ -168,6 +168,8 @@ public class DiyEditTriggersActivity extends Activity {
 
 	public void showMap(View v) {
 		Intent intent = new Intent(this, DiyMapActivity.class);
+		intent.putExtra("latitude", var_latitude);
+		intent.putExtra("longtitude", var_longtitude);
 		startActivityForResult(intent, ACTIVITY_MAP);
 	}
 
@@ -179,7 +181,7 @@ public class DiyEditTriggersActivity extends Activity {
 		switch (requestCode) {
 		case ACTIVITY_MAP:
 			if (resultCode == RESULT_OK) {
-				double latitude = intent.getDoubleExtra("latitude", 0.2);
+				double latitude = intent.getDoubleExtra("latitude", 0.0);
 				double longtitude = intent.getDoubleExtra("longtitude", 0.0);
 				Log.v("diy", "latitude = " + Double.toString(latitude)
 						+ " longtitude= " + Double.toString(longtitude));

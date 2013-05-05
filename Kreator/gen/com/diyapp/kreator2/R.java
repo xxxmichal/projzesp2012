@@ -166,6 +166,7 @@ containing a value of this type.
         public static final int label_location_example_param_longtitude=0x7f04001a;
         public static final int label_trigger_example_param_1=0x7f040014;
         public static final int map=0x7f04001e;
+        public static final int menu_select_position=0x7f040025;
         public static final int menu_settings=0x7f040024;
         public static final int none=0x7f040000;
         public static final int normal=0x7f040001;
@@ -261,15 +262,16 @@ containing a value of this type.
         public static final int confirm=0x7f050017;
         public static final int description=0x7f050016;
         public static final int edit_diy=0x7f050018;
-        public static final int hello_world=0x7f05001b;
+        public static final int hello_world=0x7f05001c;
         public static final int menu_delete=0x7f050014;
         public static final int menu_insert=0x7f050013;
+        public static final int menu_select_position=0x7f05001b;
         public static final int menu_settings=0x7f05001a;
         public static final int no_diys=0x7f050012;
         public static final int title=0x7f050015;
-        public static final int title_activity_diy_edit_actions=0x7f05001c;
+        public static final int title_activity_diy_edit_actions=0x7f05001d;
         public static final int title_activity_diy_edit_triggers=0x7f050019;
-        public static final int title_activity_diy_map=0x7f05001d;
+        public static final int title_activity_diy_map=0x7f05001e;
     }
     public static final class style {
         /** 
