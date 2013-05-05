@@ -37,7 +37,6 @@ import com.diyapp.lib.DiyDbAdapter;
 public class Diy extends ListActivity {
 	private static final int ACTIVITY_CREATE = 0;
 	private static final int ACTIVITY_EDIT = 1;
-	private static final int ACTIVITY_MAP = 2;
 
 	private static final int INSERT_ID = Menu.FIRST;
 	private static final int DELETE_ID = Menu.FIRST + 1;
