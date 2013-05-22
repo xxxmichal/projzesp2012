@@ -1,5 +1,7 @@
 package com.diyapp.lib;
 
+/* to insert new columns use insert_DiyDbAdapter.py script */
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -30,6 +32,7 @@ public class DiyDbAdapter {
 	public static final String KEY_TITLE = "title";
 	public static final String KEY_DESCRIPTION = "description";
 	public static final String KEY_ENABLED = "enabled";
+	// TEMPLATE_edit: public static final String KEY_{uppercase} = "{lowercase}";//
 
 	// triggers
 	public static final String KEY_TRIGGER_EXAMPLE = "trigger_example";
@@ -40,7 +43,11 @@ public class DiyDbAdapter {
 	public static final String KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE = "trigger_location_param_longtitude";
 	public static final String KEY_TRIGGER_LOCATION_PARAM_AREA = "trigger_location_param_area";
 
+	// TEMPLATE_triggers: public static final String KEY_{uppercase} = "{lowercase}";//
+
 	// actions
+	// TEMPLATE_actions: public static final String KEY_{uppercase} = "{lowercase}";//
+
 	public static final String KEY_ACTION_EXAMPLE = "action_example";
 	public static final String KEY_ACTION_EXAMPLE_PARAM_1 = "action_example_param_1";
 
@@ -48,6 +55,7 @@ public class DiyDbAdapter {
 			KEY_TITLE, //
 			KEY_DESCRIPTION, //
 			KEY_ENABLED, //
+			// TEMPLATE_edit: KEY_{uppercase},//
 
 			// triggers
 			KEY_TRIGGER_EXAMPLE, //
@@ -58,7 +66,10 @@ public class DiyDbAdapter {
 			KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE, //
 			KEY_TRIGGER_LOCATION_PARAM_AREA, //
 
+			// TEMPLATE_triggers: KEY_{uppercase},//
+
 			// actions
+			// TEMPLATE_actions: KEY_{uppercase},//
 			KEY_ACTION_EXAMPLE, //
 			KEY_ACTION_EXAMPLE_PARAM_1 }; //
 
@@ -75,6 +86,7 @@ public class DiyDbAdapter {
 			+ KEY_TITLE + " text not null, " //
 			+ KEY_DESCRIPTION + " text not null, " //
 			+ KEY_ENABLED + " integer not null, " // 0|1 is this diya active ?
+			// TEMPLATE_edit: + KEY_{uppercase} + " {dbtype} not null,"//
 
 			// triggers
 			+ KEY_TRIGGER_EXAMPLE + " integer not null, " // 0|1 is this trigger
@@ -85,8 +97,12 @@ public class DiyDbAdapter {
 			+ KEY_TRIGGER_LOCATION_PARAM_LATITUDE + " real not null, " //
 			+ KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE + " real not null, " //
 			+ KEY_TRIGGER_LOCATION_PARAM_AREA + " real not null, " //
-			
+
+			// TEMPLATE_triggers: + KEY_{uppercase} + " {dbtype} not null,"//
+
 			// actions
+			// TEMPLATE_actions: + KEY_{uppercase} + " {dbtype} not null,"//
+
 			+ KEY_ACTION_EXAMPLE + " integer not null, " // 0|1 is this action
 															// active ?
 			+ KEY_ACTION_EXAMPLE_PARAM_1 + " text not null);"; //
@@ -162,20 +178,22 @@ public class DiyDbAdapter {
 		initialValues.put(KEY_TITLE, title);
 		initialValues.put(KEY_DESCRIPTION, description);
 		initialValues.put(KEY_ENABLED, enabled ? 1 : 0);
-		
-		//triggers
+		// TEMPLATE_edit: initialValues.put(KEY_{uppercase}, {default_value});//
+
+		// triggers
 		initialValues.put(KEY_TRIGGER_EXAMPLE, 0);
 		initialValues.put(KEY_TRIGGER_EXAMPLE_PARAM_1, "");
-		
-        initialValues.put(KEY_TRIGGER_LOCATION, 0);
-        initialValues.put(KEY_TRIGGER_LOCATION_PARAM_LATITUDE, 0.0);
-        initialValues.put(KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE, 0.0);
-        initialValues.put(KEY_TRIGGER_LOCATION_PARAM_AREA, 100.0);
-		
-		//actions
+
+		initialValues.put(KEY_TRIGGER_LOCATION, 0);
+		initialValues.put(KEY_TRIGGER_LOCATION_PARAM_LATITUDE, 0.0);
+		initialValues.put(KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE, 0.0);
+		initialValues.put(KEY_TRIGGER_LOCATION_PARAM_AREA, 100.0);
+		// TEMPLATE_triggers: initialValues.put(KEY_{uppercase}, {default_value});//
+
+		// actions
 		initialValues.put(KEY_ACTION_EXAMPLE, 0);
 		initialValues.put(KEY_ACTION_EXAMPLE_PARAM_1, "");
-		
+		// TEMPLATE_actions: initialValues.put(KEY_{uppercase}, {default_value});//
 
 		return mDb.insert(DATABASE_TABLE, null, initialValues);
 	}
@@ -243,23 +261,27 @@ public class DiyDbAdapter {
 		args.put(KEY_TITLE, title);
 		args.put(KEY_DESCRIPTION, description);
 		args.put(KEY_ENABLED, enabled ? 1 : 0);
+		// TEMPLATE_edit: args.put(KEY_{uppercase}, {lowercase});
 
 		return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
 	}
 
 	public boolean updateDiyTriggers(long rowId,
 			boolean trigger_example_enabled, String trigger_example_param_1,
-			boolean trigger_location_enabled, double trigger_location_param_latitude,
-			double trigger_location_param_longtitude, double trigger_location_param_area ) {
+			boolean trigger_location_enabled,
+			double trigger_location_param_latitude,
+			double trigger_location_param_longtitude,
+			double trigger_location_param_area) {
 		ContentValues args = new ContentValues();
 		args.put(KEY_TRIGGER_EXAMPLE, trigger_example_enabled ? 1 : 0);
 		args.put(KEY_TRIGGER_EXAMPLE_PARAM_1, trigger_example_param_1);
-		
+
 		args.put(KEY_TRIGGER_LOCATION, trigger_location_enabled ? 1 : 0);
-		args.put(KEY_TRIGGER_LOCATION_PARAM_LATITUDE, trigger_location_param_latitude);
+		args.put(KEY_TRIGGER_LOCATION_PARAM_LATITUDE,
+				trigger_location_param_latitude);
 		args.put(KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE, trigger_location_param_longtitude);
 		args.put(KEY_TRIGGER_LOCATION_PARAM_AREA, trigger_location_param_area);
-		
+		// TEMPLATE_triggers: args.put(KEY_{uppercase}, {lowercase});
 
 		return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
 	}
@@ -269,6 +291,7 @@ public class DiyDbAdapter {
 		ContentValues args = new ContentValues();
 		args.put(KEY_ACTION_EXAMPLE, action_example_enabled ? 1 : 0);
 		args.put(KEY_ACTION_EXAMPLE_PARAM_1, action_example_param_1);
+		// TEMPLATE_actions: args.put(KEY_{uppercase}, {lowercase});
 
 		return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
 	}
