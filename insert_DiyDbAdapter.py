@@ -8,17 +8,14 @@ def replacements(strarg):
     .replace('{uppercase}', word.upper())\
     .replace('{dbtype}', dbtype)\
     .replace('{default_value}', default_value.upper())\
-    .replace('{vartype}', vartype)
+    .replace('{vartype}', vartype)\
+    .replace('{cmp}', cmpa)
 
 FILE_IN = '/home/lab/projzesp2012/diyapplib/src/com/diyapp/lib/DiyDbAdapter.java'
 FILE_OUT = '/home/lab/projzesp2012/diyapplib/src/com/diyapp/lib/DiyDbAdapter.java_new'
 
 nlines = []
-word = sys.argv[1]
-section = sys.argv[2] # edit triggers actions
-dbtype = sys.argv[3]
-default_value = sys.argv[4]
-vartype = sys.argv[5]
+word, section, dbtype, default_value, vartype, cmpa = sys.argv[1:]
 
 
 

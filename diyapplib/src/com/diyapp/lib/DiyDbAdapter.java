@@ -22,7 +22,7 @@ import android.util.Log;
  */
 public class DiyDbAdapter {
 	// increase version after modifying columns, clean and rebuild library AND project!
-	private static final int DATABASE_VERSION = 12;
+	private static final int DATABASE_VERSION = 14;
 
 	private static final String DATABASE_NAME = "data2";
 	private static final String DATABASE_TABLE = "diys";
@@ -50,6 +50,10 @@ public class DiyDbAdapter {
 	// TEMPLATE_triggers: public static final String KEY_{uppercase} = "{lowercase}";//
 
 	// actions
+	public static final String KEY_ACTION_WIFI = "action_wifi";//
+	public static final String KEY_ACTION_WIFI_PARAM_TURN_ON = "action_wifi_param_turn_on";//
+	public static final String KEY_ACTION_WIFI_PARAM_TURN_OFF = "action_wifi_param_turn_off";//
+	public static final String KEY_ACTION_WIFI_PARAM_SSID = "action_wifi_param_ssid";//
 	// TEMPLATE_actions: public static final String KEY_{uppercase} = "{lowercase}";//
 
 	public static final String KEY_ACTION_EXAMPLE = "action_example";
@@ -78,6 +82,10 @@ public class DiyDbAdapter {
 			// TEMPLATE_triggers: KEY_{uppercase},//
 
 			// actions
+			KEY_ACTION_WIFI,//
+			KEY_ACTION_WIFI_PARAM_TURN_ON,//
+			KEY_ACTION_WIFI_PARAM_TURN_OFF,//
+			KEY_ACTION_WIFI_PARAM_SSID,//
 			// TEMPLATE_actions: KEY_{uppercase},//
 			KEY_ACTION_EXAMPLE, //
 			KEY_ACTION_EXAMPLE_PARAM_1 }; //
@@ -115,6 +123,10 @@ public class DiyDbAdapter {
 			// TEMPLATE_triggers: + KEY_{uppercase} + " {dbtype} not null,"//
 
 			// actions
+			+ KEY_ACTION_WIFI + " integer not null,"//
+			+ KEY_ACTION_WIFI_PARAM_TURN_ON + " integer not null,"//
+			+ KEY_ACTION_WIFI_PARAM_TURN_OFF + " integer not null,"//
+			+ KEY_ACTION_WIFI_PARAM_SSID + " text not null,"//
 			// TEMPLATE_actions: + KEY_{uppercase} + " {dbtype} not null,"//
 
 			+ KEY_ACTION_EXAMPLE + " integer not null, " // 0|1 is this action
@@ -212,6 +224,10 @@ public class DiyDbAdapter {
 		// actions
 		initialValues.put(KEY_ACTION_EXAMPLE, 0);
 		initialValues.put(KEY_ACTION_EXAMPLE_PARAM_1, "");
+		initialValues.put(KEY_ACTION_WIFI, 0);//
+		initialValues.put(KEY_ACTION_WIFI_PARAM_TURN_ON, 0);//
+		initialValues.put(KEY_ACTION_WIFI_PARAM_TURN_OFF, 0);//
+		initialValues.put(KEY_ACTION_WIFI_PARAM_SSID, "");//
 		// TEMPLATE_actions: initialValues.put(KEY_{uppercase}, {default_value});//
 
 		return mDb.insert(DATABASE_TABLE, null, initialValues);
@@ -311,18 +327,29 @@ public class DiyDbAdapter {
 		args.put(KEY_TRIGGER_DATE_PARAM_TO, trigger_date_param_to);
 		args.put(KEY_TRIGGER_WIFI, trigger_wifi);
 		args.put(KEY_TRIGGER_WIFI_PARAM_SSID, trigger_wifi_param_ssid);
-		// TEMPLATE_triggers: args.put(KEY_{uppercase}, {lowercase});
+		// TEMPLATE_triggers: args.put(KEY_{uppercase}, {lowercase}{cmp});
 		// must add '? 1 : 0' manually
 
 		return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
 	}
 
-	public boolean updateDiyActions(long rowId, boolean action_example_enabled,
+	public boolean updateDiyActions(
+			long rowId,
+			boolean action_wifi,
+			boolean action_wifi_param_turn_on,
+			boolean action_wifi_param_turn_off,
+			String action_wifi_param_ssid,
+			// TEMPLATE_actions: {vartype} {lowercase},//
+			boolean action_example_enabled,
 			String action_example_param_1) {
 		ContentValues args = new ContentValues();
 		args.put(KEY_ACTION_EXAMPLE, action_example_enabled ? 1 : 0);
 		args.put(KEY_ACTION_EXAMPLE_PARAM_1, action_example_param_1);
-		// TEMPLATE_actions: args.put(KEY_{uppercase}, {lowercase});
+		args.put(KEY_ACTION_WIFI, action_wifi ? 1 : 0);
+		args.put(KEY_ACTION_WIFI_PARAM_TURN_ON, action_wifi_param_turn_on ? 1 : 0);
+		args.put(KEY_ACTION_WIFI_PARAM_TURN_OFF, action_wifi_param_turn_off ? 1 : 0);
+		args.put(KEY_ACTION_WIFI_PARAM_SSID, action_wifi_param_ssid);
+		// TEMPLATE_actions: args.put(KEY_{uppercase}, {lowercase}{cmp});
 
 		return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
 	}
