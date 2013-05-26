@@ -17,6 +17,9 @@ public class DiyEditActionsActivity extends Activity {
 	CheckBox maction_wifi_param_turn_on;//
 	CheckBox  maction_wifi_param_turn_off;//
 	EditText maction_wifi_param_ssid;//
+	ToggleButton maction_notification;//
+	EditText maction_notification_param_title;//
+	EditText maction_notification_param_text;//
 	// TEMPLATE: {field} m{lowercase};//
 	
 	Long mRowId;
@@ -40,6 +43,9 @@ public class DiyEditActionsActivity extends Activity {
 		maction_wifi_param_turn_on = (CheckBox) findViewById(R.id.action_wifi_param_turn_on);//
 		maction_wifi_param_turn_off = (CheckBox ) findViewById(R.id.action_wifi_param_turn_off);//
 		maction_wifi_param_ssid = (EditText) findViewById(R.id.action_wifi_param_ssid);//
+		maction_notification = (ToggleButton) findViewById(R.id.action_notification);//
+		maction_notification_param_title = (EditText) findViewById(R.id.action_notification_param_title);//
+		maction_notification_param_text = (EditText) findViewById(R.id.action_notification_param_text);//
 		// TEMPLATE: m{lowercase} = ({field}) findViewById(R.id.{lowercase});//
 	
 		populateFields();
@@ -68,6 +74,9 @@ public class DiyEditActionsActivity extends Activity {
 			maction_wifi_param_turn_on.setChecked( 1 == diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_WIFI_PARAM_TURN_ON)));//
 			maction_wifi_param_turn_off.setChecked( 1 == diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_WIFI_PARAM_TURN_OFF)));//
 			maction_wifi_param_ssid.setText(diy.getString(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_WIFI_PARAM_SSID)));//
+			maction_notification.setChecked( 1 == diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_NOTIFICATION)));//
+			maction_notification_param_title.setText(diy.getString(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_NOTIFICATION_PARAM_TITLE)));//
+			maction_notification_param_text.setText(diy.getString(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_NOTIFICATION_PARAM_TEXT)));//
 			// TEMPLATE: m{lowercase}.{diyget}(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_{uppercase})));//
 		}
 	}
@@ -97,6 +106,9 @@ public class DiyEditActionsActivity extends Activity {
 				maction_wifi_param_turn_on.isChecked(),//
 				maction_wifi_param_turn_off.isChecked(),//
 				maction_wifi_param_ssid.getText().toString(),//
+				maction_notification.isChecked(),//
+				maction_notification_param_title.getText().toString(),//
+				maction_notification_param_text.getText().toString(),//
 				// TEMPLATE: m{lowercase}.{retrieve}(),//
 				maction_example.isChecked(),
 				maction_example_param_1.getText().toString());
