@@ -33,7 +33,7 @@ public class AndroidTabAndListView extends TabActivity {
 		}
 		
 		if (mRowId == null) {
-			long id = dbHelper.createDiy("diy", "", false);
+			long id = dbHelper.createDiy("Do It Yourself", "", false);
 			if ( id > 0 ) {
 				mRowId = id;
 			}
