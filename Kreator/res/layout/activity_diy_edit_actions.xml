@@ -8,32 +8,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <ToggleButton
-            android:id="@+id/action_example"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="action_example" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/label_action_example_param_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:text="action_example_param_1" />
-
-            <EditText
-                android:id="@+id/action_example_param_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10" />
-        </LinearLayout>
-
         <!-- spacer -->
 
         <View

@@ -70,8 +70,6 @@ public class DiyDbAdapter {
 	public static final String KEY_ACTION_SOUNDPROFILE_PARAM_VOLUME = "action_soundprofile_param_volume";//
 	// TEMPLATE_actions: public static final String KEY_{uppercase} = "{lowercase}";//
 
-	public static final String KEY_ACTION_EXAMPLE = "action_example";
-	public static final String KEY_ACTION_EXAMPLE_PARAM_1 = "action_example_param_1";
 
 	public static final String[] COLUMNS = new String[] { KEY_ROWID, //
 			KEY_TITLE, //
@@ -96,6 +94,7 @@ public class DiyDbAdapter {
 			// TEMPLATE_triggers: KEY_{uppercase},//
 
 			// actions
+			// TEMPLATE_actions: KEY_{uppercase},// 
 			KEY_ACTION_WIFI,//
 			KEY_ACTION_WIFI_PARAM_TURN_ON,//
 			KEY_ACTION_WIFI_PARAM_TURN_OFF,//
@@ -113,10 +112,9 @@ public class DiyDbAdapter {
 			KEY_ACTION_SOUNDPROFILE,//
 			KEY_ACTION_SOUNDPROFILE_PARAM_PROFILE_SOUND,//
 			KEY_ACTION_SOUNDPROFILE_PARAM_PROFILE_VIBRATIONS,//
-			KEY_ACTION_SOUNDPROFILE_PARAM_VOLUME,//
-			// TEMPLATE_actions: KEY_{uppercase},//
-			KEY_ACTION_EXAMPLE, //
-			KEY_ACTION_EXAMPLE_PARAM_1 }; //
+			KEY_ACTION_SOUNDPROFILE_PARAM_VOLUME//
+
+			}; //
 
 	private static final String TAG = "DiyDbAdapter";
 	private DatabaseHelper mDbHelper;
@@ -151,6 +149,7 @@ public class DiyDbAdapter {
 			// TEMPLATE_triggers: + KEY_{uppercase} + " {dbtype} not null,"//
 
 			// actions
+			// TEMPLATE_actions: + KEY_{uppercase} + " {dbtype} not null,"//
 			+ KEY_ACTION_WIFI + " integer not null,"//
 			+ KEY_ACTION_WIFI_PARAM_TURN_ON + " integer not null,"//
 			+ KEY_ACTION_WIFI_PARAM_TURN_OFF + " integer not null,"//
@@ -168,12 +167,7 @@ public class DiyDbAdapter {
 			+ KEY_ACTION_SOUNDPROFILE + " integer not null,"//
 			+ KEY_ACTION_SOUNDPROFILE_PARAM_PROFILE_SOUND + " integer not null,"//
 			+ KEY_ACTION_SOUNDPROFILE_PARAM_PROFILE_VIBRATIONS + " integer not null,"//
-			+ KEY_ACTION_SOUNDPROFILE_PARAM_VOLUME + " integer not null,"//
-			// TEMPLATE_actions: + KEY_{uppercase} + " {dbtype} not null,"//
-
-			+ KEY_ACTION_EXAMPLE + " integer not null, " // 0|1 is this action
-															// active ?
-			+ KEY_ACTION_EXAMPLE_PARAM_1 + " text not null);"; //
+			+ KEY_ACTION_SOUNDPROFILE_PARAM_VOLUME + " integer not null);";//
 
 	private final Context mCtx;
 
@@ -264,8 +258,6 @@ public class DiyDbAdapter {
 		// TEMPLATE_triggers: initialValues.put(KEY_{uppercase}, {default_value});//
 
 		// actions
-		initialValues.put(KEY_ACTION_EXAMPLE, 0);
-		initialValues.put(KEY_ACTION_EXAMPLE_PARAM_1, "");
 		initialValues.put(KEY_ACTION_WIFI, 0);//
 		initialValues.put(KEY_ACTION_WIFI_PARAM_TURN_ON, 0);//
 		initialValues.put(KEY_ACTION_WIFI_PARAM_TURN_OFF, 0);//
@@ -391,6 +383,7 @@ public class DiyDbAdapter {
 
 	public boolean updateDiyActions(
 			long rowId,
+			// TEMPLATE_actions: {vartype} {lowercase},//
 			boolean action_wifi,
 			boolean action_wifi_param_turn_on,
 			boolean action_wifi_param_turn_off,
@@ -408,13 +401,9 @@ public class DiyDbAdapter {
 			boolean action_soundprofile,//
 			boolean action_soundprofile_param_profile_sound,//
 			boolean action_soundprofile_param_profile_vibrations,//
-			int action_soundprofile_param_volume,//
-			// TEMPLATE_actions: {vartype} {lowercase},//
-			boolean action_example_enabled,
-			String action_example_param_1) {
+			int action_soundprofile_param_volume//
+			) {
 		ContentValues args = new ContentValues();
-		args.put(KEY_ACTION_EXAMPLE, action_example_enabled ? 1 : 0);
-		args.put(KEY_ACTION_EXAMPLE_PARAM_1, action_example_param_1);
 		args.put(KEY_ACTION_WIFI, action_wifi ? 1 : 0);
 		args.put(KEY_ACTION_WIFI_PARAM_TURN_ON, action_wifi_param_turn_on ? 1 : 0);
 		args.put(KEY_ACTION_WIFI_PARAM_TURN_OFF, action_wifi_param_turn_off ? 1 : 0);

@@ -12,8 +12,6 @@ import com.diyapp.kreator2.R;
 import com.diyapp.lib.DiyDbAdapter;
 
 public class DiyEditActionsActivity extends Activity {
-	EditText maction_example_param_1;
-	ToggleButton maction_example;
 	ToggleButton maction_wifi;//
 	CheckBox maction_wifi_param_turn_on;//
 	CheckBox  maction_wifi_param_turn_off;//
@@ -48,8 +46,6 @@ public class DiyEditActionsActivity extends Activity {
 		
 		setContentView(R.layout.activity_diy_edit_actions);
 		setTitle(R.string.edit_diy);
-		maction_example = (ToggleButton) findViewById(R.id.action_example);
-		maction_example_param_1 = (EditText) findViewById(R.id.action_example_param_1);
 		
 		maction_wifi = (ToggleButton) findViewById(R.id.action_wifi);//
 		maction_wifi_param_turn_on = (CheckBox) findViewById(R.id.action_wifi_param_turn_on);//
@@ -88,10 +84,6 @@ public class DiyEditActionsActivity extends Activity {
 			Cursor diy = mDbHelper.fetchDiy(mRowId);
 			startManagingCursor(diy);
 			
-			maction_example.setChecked(1 == diy.getInt(
-					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_EXAMPLE)));
-			maction_example_param_1.setText(diy.getString(
-					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_EXAMPLE_PARAM_1)));
 			
 			maction_wifi.setChecked( 1 == diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_WIFI)));//
 			maction_wifi_param_turn_on.setChecked( 1 == diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_WIFI_PARAM_TURN_ON)));//
@@ -136,6 +128,7 @@ public class DiyEditActionsActivity extends Activity {
 	
 	private void saveState() {
 		mDbHelper.updateDiyActions(mRowId,
+				// TEMPLATE: m{lowercase}.{retrieve}(),//
 				maction_wifi.isChecked(),//
 				maction_wifi_param_turn_on.isChecked(),//
 				maction_wifi_param_turn_off.isChecked(),//
@@ -153,10 +146,8 @@ public class DiyEditActionsActivity extends Activity {
 				maction_soundprofile_param_profile_sound.isChecked(),//
 				maction_soundprofile_param_profile_vibrations.isChecked(),//
 				maction_soundprofile.isChecked(),//
-				maction_soundprofile_param_volume.getProgress(),//
-				// TEMPLATE: m{lowercase}.{retrieve}(),//
-				maction_example.isChecked(),
-				maction_example_param_1.getText().toString());
+				maction_soundprofile_param_volume.getProgress());//
+
 	}	
 
 }
