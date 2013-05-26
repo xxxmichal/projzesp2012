@@ -22,7 +22,7 @@ import android.util.Log;
  */
 public class DiyDbAdapter {
 	// increase version after modifying columns, clean and rebuild library AND project!
-	private static final int DATABASE_VERSION = 20;
+	private static final int DATABASE_VERSION = 21;
 
 	private static final String DATABASE_NAME = "data2";
 	private static final String DATABASE_TABLE = "diys";
@@ -262,7 +262,7 @@ public class DiyDbAdapter {
 		initialValues.put(KEY_ACTION_SOUNDPROFILE, 0);//
 		initialValues.put(KEY_ACTION_SOUNDPROFILE_PARAM_PROFILE_SOUND, 0);//
 		initialValues.put(KEY_ACTION_SOUNDPROFILE_PARAM_PROFILE_VIBRATIONS, 0);//
-		initialValues.put(KEY_ACTION_SOUNDPROFILE_PARAM_VOLUME, 0);//
+		initialValues.put(KEY_ACTION_SOUNDPROFILE_PARAM_VOLUME, 7);//
 		// TEMPLATE_actions: initialValues.put(KEY_{uppercase}, {default_value});//
 
 		return mDb.insert(DATABASE_TABLE, null, initialValues);

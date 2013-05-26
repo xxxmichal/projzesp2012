@@ -305,7 +305,8 @@
         <SeekBar
             android:id="@+id/action_soundprofile_param_volume"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content" 
+            android:max="10" />
         <!-- break -->
 
     </LinearLayout>
