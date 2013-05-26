@@ -8,12 +8,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <!-- spacer -->
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="2px"
-            android:background="@drawable/i1x1" />
 
         <LinearLayout
             android:layout_width="match_parent"
