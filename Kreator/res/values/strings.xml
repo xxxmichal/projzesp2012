@@ -15,5 +15,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_diy_edit_actions">DiyEditActionsActivity</string>
     <string name="title_activity_diy_map">DiyMapActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_diy_date_picker">DiyDatePicker</string>
 
 </resources>

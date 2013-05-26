@@ -7,26 +7,36 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
+import android.widget.TextView;
+import android.widget.ToggleButton;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.diyapp.kreator2.R;
 import com.diyapp.lib.DiyDbAdapter;
 
 public class DiyEditTriggersActivity extends Activity {
 	private static final int ACTIVITY_MAP = 2;
-
-	CheckBox mtrigger_example_enabled;
+	private static final int ACTIVITY_DATE_PICKER_FROM = 3;
+	private static final int ACTIVITY_DATE_PICKER_TO = 4;
+	
+	ToggleButton mtrigger_date_enabled;
+	TextView mtrigger_date_param_from;
+	TextView mtrigger_date_param_to;
+	
+	ToggleButton mtrigger_example_enabled;
 	EditText mtrigger_example_param_1;
 
-	CheckBox mtrigger_location_enabled;
-	static EditText mtrigger_location_param_latitude;
-	static EditText mtrigger_location_param_longtitude;
+	ToggleButton mtrigger_location_enabled;
+	static TextView mtrigger_location_param_latitude;
+	static TextView mtrigger_location_param_longtitude;
 	EditText mtrigger_location_param_area;
 
 	static double var_latitude = -1;
 	static double var_longtitude = -1;
+	String from_timedate = "";
+	String to_timedate = "";
 
 	Long mRowId;
 
@@ -44,12 +54,16 @@ public class DiyEditTriggersActivity extends Activity {
 		setTitle(R.string.edit_diy);
 
 		// triggers
-		mtrigger_example_enabled = (CheckBox) findViewById(R.id.trigger_example_enabled);
+		mtrigger_date_enabled = (ToggleButton) findViewById(R.id.trigger_date_enabled);
+		mtrigger_date_param_from = (TextView) findViewById(R.id.trigger_date_param_from);
+		mtrigger_date_param_to = (TextView) findViewById(R.id.trigger_date_param_to);
+		
+		mtrigger_example_enabled = (ToggleButton) findViewById(R.id.trigger_example_enabled);
 		mtrigger_example_param_1 = (EditText) findViewById(R.id.trigger_example_param_1);
 
-		mtrigger_location_enabled = (CheckBox) findViewById(R.id.trigger_location_enabled);
-		mtrigger_location_param_latitude = (EditText) findViewById(R.id.trigger_location_param_latitude);
-		mtrigger_location_param_longtitude = (EditText) findViewById(R.id.trigger_location_param_longtitude);
+		mtrigger_location_enabled = (ToggleButton) findViewById(R.id.trigger_location_enabled);
+		mtrigger_location_param_latitude = (TextView) findViewById(R.id.trigger_location_param_latitude);
+		mtrigger_location_param_longtitude = (TextView) findViewById(R.id.trigger_location_param_longtitude);
 		mtrigger_location_param_area = (EditText) findViewById(R.id.trigger_location_param_area);
 
 		// disable
@@ -85,6 +99,7 @@ public class DiyEditTriggersActivity extends Activity {
 			startManagingCursor(diy);
 
 			// triggers
+
 			mtrigger_example_enabled.setChecked(1 == diy.getInt(diy
 					.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_EXAMPLE)));
 			mtrigger_example_param_1
@@ -104,6 +119,7 @@ public class DiyEditTriggersActivity extends Activity {
 //						+ " var_latitude " + var_latitude, Toast.LENGTH_SHORT);
 //				toast.show();
 			}
+			
 			// unable to update theses 2
 			mtrigger_location_param_latitude
 					.setText(Double.toString(diy.getDouble(diy
@@ -112,7 +128,6 @@ public class DiyEditTriggersActivity extends Activity {
 					.setText(Double.toString(diy.getDouble(diy
 							.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE))));
 			// --
-			
 			
 			 //this things are not updating because we are not in a view!
 			 mtrigger_location_param_latitude.setText(Double
@@ -124,6 +139,25 @@ public class DiyEditTriggersActivity extends Activity {
 			mtrigger_location_param_area
 					.setText(Double.toString(diy.getDouble(diy
 							.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_LOCATION_PARAM_AREA))));
+			
+			if ( from_timedate == "" ) {
+				from_timedate = diy.getString(diy
+						.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_DATE_PARAM_FROM));
+			}
+			if ( to_timedate == "" ) {
+				to_timedate = diy.getString(diy
+						.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_DATE_PARAM_TO));
+			}
+			
+			mtrigger_date_enabled.setChecked(1 == diy.getInt(diy
+					.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_DATE)));
+			mtrigger_date_param_from.setText(from_timedate);
+			mtrigger_date_param_to.setText(to_timedate);
+			
+
+			
+			
+
 		}
 	}
 
@@ -150,6 +184,9 @@ public class DiyEditTriggersActivity extends Activity {
 		mDbHelper.updateDiyTriggers(
 				mRowId, //
 				// triggers
+				mtrigger_date_enabled.isChecked(),
+				mtrigger_date_param_from.getText().toString(),
+				mtrigger_date_param_to.getText().toString(),
 				mtrigger_example_enabled.isChecked(), //
 				mtrigger_example_param_1.getText().toString(),
 				mtrigger_location_enabled.isChecked(), //
@@ -172,6 +209,16 @@ public class DiyEditTriggersActivity extends Activity {
 		intent.putExtra("longtitude", var_longtitude);
 		startActivityForResult(intent, ACTIVITY_MAP);
 	}
+	
+	public void showDatePickerFrom(View v) {
+		Intent intent = new Intent(this, DiyDatePicker.class);
+		startActivityForResult(intent, ACTIVITY_DATE_PICKER_FROM);
+	}
+	
+	public void showDatePickerTo(View v) {
+		Intent intent = new Intent(this, DiyDatePicker.class);
+		startActivityForResult(intent, ACTIVITY_DATE_PICKER_TO);
+	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode,
@@ -186,29 +233,24 @@ public class DiyEditTriggersActivity extends Activity {
 				Log.v("diy", "latitude = " + Double.toString(latitude)
 						+ " longtitude= " + Double.toString(longtitude));
 
-				/*
-				 * //this things are not updating because we are not in a view!
-				 * mtrigger_location_param_latitude.setText(Double
-				 * .toString(latitude));
-				 * DiyEditTriggersActivity.this.mtrigger_location_param_longtitude
-				 * .setText(Double .toString(longtitude));
-				 * DiyEditTriggersActivity
-				 * .this.mtrigger_location_param_area.setText("50");
-				 * DiyEditTriggersActivity
-				 * .this.mtrigger_location_param_area.postInvalidate();
-				 */
-
 				var_latitude = latitude;
 				var_longtitude = longtitude;
 
-//				Toast toast = Toast.makeText(this, "latitude "
-//						+ Double.toString(var_latitude) 
-//						+ " longtitude "
-//						+ Double.toString(var_longtitude), Toast.LENGTH_SHORT);
-//				toast.show();
 
 			}
 			break;
+		case ACTIVITY_DATE_PICKER_FROM:
+			if (resultCode == RESULT_OK) {
+				from_timedate = intent.getStringExtra("timedate");
+				Log.v("diy", "from_timedate = " + from_timedate);
+			}
+			break;		
+		case ACTIVITY_DATE_PICKER_TO:
+			if (resultCode == RESULT_OK) {
+				to_timedate = intent.getStringExtra("timedate");
+				Log.v("diy", "to_timedate = " + to_timedate);
+			}
+			break;	
 		default:
 			break;
 		}

@@ -5,13 +5,14 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ToggleButton;
 
 import com.diyapp.kreator2.R;
 import com.diyapp.lib.DiyDbAdapter;
 
 public class DiyEditActionsActivity extends Activity {
 	EditText maction_example_param_1;
-	CheckBox maction_example_enabled;
+	ToggleButton maction_example_enabled;
 	Long mRowId;
 	
 	private DiyDbAdapter mDbHelper;
@@ -26,7 +27,7 @@ public class DiyEditActionsActivity extends Activity {
 		
 		setContentView(R.layout.activity_diy_edit_actions);
 		setTitle(R.string.edit_diy);
-		maction_example_enabled = (CheckBox) findViewById(R.id.action_example_enabled);
+		maction_example_enabled = (ToggleButton) findViewById(R.id.action_example_enabled);
 		maction_example_param_1 = (EditText) findViewById(R.id.action_example_param_1);
 	
 		populateFields();

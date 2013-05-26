@@ -4,6 +4,7 @@
     <string name="app_name">fakeDIYa</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="no_diys">No Diys Yet</string>
+    <string name="title_activity_triggers_test">Triggers Test</string>
+    <string name="title_activity_actions_test">Actions Test</string>
 
 </resources>

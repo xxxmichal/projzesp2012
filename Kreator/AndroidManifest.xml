@@ -59,16 +59,23 @@
             android:name="com.diyapp.kreator2.DiyEditActionsActivity"
             android:label="@string/title_activity_diy_edit_actions" >
         </activity>
-
-
         <activity
             android:name="com.diyapp.kreator2.DiyMapActivity"
             android:label="@string/title_activity_diy_map" >
         </activity>
+
         <meta-data
-        android:name="com.google.android.maps.v2.API_KEY"
-        android:value="AIzaSyDklCL1cdWj9KOtZAOC23GxzOogip4zUto" />
-        
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDklCL1cdWj9KOtZAOC23GxzOogip4zUto" />
+
+        <activity
+            android:name="com.diyapp.kreator2.MainActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name="com.diyapp.kreator2.DiyDatePicker"
+            android:label="@string/title_activity_diy_date_picker" >
+        </activity>
     </application>
 
 </manifest>

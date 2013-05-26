@@ -10,13 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ToggleButton;
 
 import com.diyapp.lib.DiyDbAdapter;
 
 public class DiyEdit extends Activity {
 	EditText mTitleText;
 	EditText mBodyText;
-	CheckBox mEnabledCB;
+	ToggleButton mEnabled;
 	Long mRowId;
 	
 	private DiyDbAdapter mDbHelper;
@@ -33,7 +34,7 @@ public class DiyEdit extends Activity {
 		setTitle(R.string.edit_diy);
 		mTitleText = (EditText) findViewById(R.id.title);
 		mBodyText = (EditText) findViewById(R.id.description);
-		mEnabledCB = (CheckBox) findViewById(R.id.enabled);
+		mEnabled = (ToggleButton) findViewById(R.id.enabled);
 		
 		populateFields();
 		
@@ -67,7 +68,7 @@ public class DiyEdit extends Activity {
 					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_TITLE)));
 			mBodyText.setText(diy.getString(
 					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_DESCRIPTION)));
-			mEnabledCB.setChecked(1 == diy.getInt(
+			mEnabled.setChecked(1 == diy.getInt(
 					diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ENABLED)));
 		}
 	}
@@ -94,7 +95,7 @@ public class DiyEdit extends Activity {
 	private void saveState() {
 		String title = mTitleText.getText().toString();
 		String body = mBodyText.getText().toString();
-		boolean enabled = mEnabledCB.isChecked();
+		boolean enabled = mEnabled.isChecked();
 		
 		mDbHelper.updateDiy(mRowId, title, body, enabled);	
 	}	

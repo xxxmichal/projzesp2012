@@ -21,9 +21,8 @@ import android.util.Log;
  * recommended).
  */
 public class DiyDbAdapter {
-	// increase version after modifying columns, clean and rebuild library AND
-	// project!
-	private static final int DATABASE_VERSION = 10;
+	// increase version after modifying columns, clean and rebuild library AND project!
+	private static final int DATABASE_VERSION = 11;
 
 	private static final String DATABASE_NAME = "data2";
 	private static final String DATABASE_TABLE = "diys";
@@ -43,6 +42,9 @@ public class DiyDbAdapter {
 	public static final String KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE = "trigger_location_param_longtitude";
 	public static final String KEY_TRIGGER_LOCATION_PARAM_AREA = "trigger_location_param_area";
 
+	public static final String KEY_TRIGGER_DATE = "trigger_date";//
+	public static final String KEY_TRIGGER_DATE_PARAM_FROM = "trigger_date_param_from";//
+	public static final String KEY_TRIGGER_DATE_PARAM_TO = "trigger_date_param_to";//
 	// TEMPLATE_triggers: public static final String KEY_{uppercase} = "{lowercase}";//
 
 	// actions
@@ -66,6 +68,9 @@ public class DiyDbAdapter {
 			KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE, //
 			KEY_TRIGGER_LOCATION_PARAM_AREA, //
 
+			KEY_TRIGGER_DATE,//
+			KEY_TRIGGER_DATE_PARAM_FROM,//
+			KEY_TRIGGER_DATE_PARAM_TO,//
 			// TEMPLATE_triggers: KEY_{uppercase},//
 
 			// actions
@@ -98,6 +103,9 @@ public class DiyDbAdapter {
 			+ KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE + " real not null, " //
 			+ KEY_TRIGGER_LOCATION_PARAM_AREA + " real not null, " //
 
+			+ KEY_TRIGGER_DATE + " integer not null,"//
+			+ KEY_TRIGGER_DATE_PARAM_FROM + " text not null,"//
+			+ KEY_TRIGGER_DATE_PARAM_TO + " text not null,"//
 			// TEMPLATE_triggers: + KEY_{uppercase} + " {dbtype} not null,"//
 
 			// actions
@@ -188,6 +196,9 @@ public class DiyDbAdapter {
 		initialValues.put(KEY_TRIGGER_LOCATION_PARAM_LATITUDE, 0.0);
 		initialValues.put(KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE, 0.0);
 		initialValues.put(KEY_TRIGGER_LOCATION_PARAM_AREA, 100.0);
+		initialValues.put(KEY_TRIGGER_DATE, 0);//
+		initialValues.put(KEY_TRIGGER_DATE_PARAM_FROM, "");//
+		initialValues.put(KEY_TRIGGER_DATE_PARAM_TO, "");//
 		// TEMPLATE_triggers: initialValues.put(KEY_{uppercase}, {default_value});//
 
 		// actions
@@ -267,6 +278,10 @@ public class DiyDbAdapter {
 	}
 
 	public boolean updateDiyTriggers(long rowId,
+			boolean trigger_date,
+			String trigger_date_param_from,
+			String trigger_date_param_to,
+			// TEMPLATE_triggers: {vartype} {lowercase},//
 			boolean trigger_example_enabled, String trigger_example_param_1,
 			boolean trigger_location_enabled,
 			double trigger_location_param_latitude,
@@ -281,7 +296,11 @@ public class DiyDbAdapter {
 				trigger_location_param_latitude);
 		args.put(KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE, trigger_location_param_longtitude);
 		args.put(KEY_TRIGGER_LOCATION_PARAM_AREA, trigger_location_param_area);
+		args.put(KEY_TRIGGER_DATE, trigger_date  ? 1 : 0);
+		args.put(KEY_TRIGGER_DATE_PARAM_FROM, trigger_date_param_from);
+		args.put(KEY_TRIGGER_DATE_PARAM_TO, trigger_date_param_to);
 		// TEMPLATE_triggers: args.put(KEY_{uppercase}, {lowercase});
+		// must add '? 1 : 0' manually
 
 		return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
 	}
