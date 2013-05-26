@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.ToggleButton;
 
 import com.diyapp.kreator2.R;
@@ -27,6 +28,10 @@ public class DiyEditActionsActivity extends Activity {
 	CheckBox maction_widgettext_param_display_address;//
 	CheckBox maction_widgettext_param_display_wifissid;//
 	CheckBox maction_widgettext_param_display_action_description;//
+	CheckBox maction_soundprofile_param_profile_sound;//
+	CheckBox maction_soundprofile_param_profile_vibrations;//
+	ToggleButton maction_soundprofile;//
+	SeekBar maction_soundprofile_param_volume;//
 	// TEMPLATE: {field} m{lowercase};//
 	
 	Long mRowId;
@@ -60,6 +65,10 @@ public class DiyEditActionsActivity extends Activity {
 		maction_widgettext_param_display_address = (CheckBox) findViewById(R.id.action_widgettext_param_display_address);//
 		maction_widgettext_param_display_wifissid = (CheckBox) findViewById(R.id.action_widgettext_param_display_wifissid);//
 		maction_widgettext_param_display_action_description = (CheckBox) findViewById(R.id.action_widgettext_param_display_action_description);//
+		maction_soundprofile_param_profile_sound = (CheckBox) findViewById(R.id.action_soundprofile_param_profile_sound);//
+		maction_soundprofile_param_profile_vibrations = (CheckBox) findViewById(R.id.action_soundprofile_param_profile_vibrations);//
+		maction_soundprofile = (ToggleButton) findViewById(R.id.action_soundprofile);//
+		maction_soundprofile_param_volume = (SeekBar) findViewById(R.id.action_soundprofile_param_volume);//
 		// TEMPLATE: m{lowercase} = ({field}) findViewById(R.id.{lowercase});//
 	
 		populateFields();
@@ -98,6 +107,10 @@ public class DiyEditActionsActivity extends Activity {
 			maction_widgettext_param_display_address.setChecked( 1 == diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_ADDRESS)));//
 			maction_widgettext_param_display_wifissid.setChecked( 1 == diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_WIFISSID)));//
 			maction_widgettext_param_display_action_description.setChecked( 1 == diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_ACTION_DESCRIPTION)));//
+			maction_soundprofile_param_profile_sound.setChecked( 1 == diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_SOUNDPROFILE_PARAM_PROFILE_SOUND)));//
+			maction_soundprofile_param_profile_vibrations.setChecked( 1 == diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_SOUNDPROFILE_PARAM_PROFILE_VIBRATIONS)));//
+			maction_soundprofile.setChecked( 1 == diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_SOUNDPROFILE)));//
+			maction_soundprofile_param_volume.setProgress( diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_SOUNDPROFILE_PARAM_VOLUME)));//
 			// TEMPLATE: m{lowercase}.{diyget}(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_{uppercase})));//
 		}
 	}
@@ -137,6 +150,10 @@ public class DiyEditActionsActivity extends Activity {
 				maction_widgettext_param_display_address.isChecked(),//
 				maction_widgettext_param_display_wifissid.isChecked(),//
 				maction_widgettext_param_display_action_description.isChecked(),//
+				maction_soundprofile_param_profile_sound.isChecked(),//
+				maction_soundprofile_param_profile_vibrations.isChecked(),//
+				maction_soundprofile.isChecked(),//
+				maction_soundprofile_param_volume.getProgress(),//
 				// TEMPLATE: m{lowercase}.{retrieve}(),//
 				maction_example.isChecked(),
 				maction_example_param_1.getText().toString());

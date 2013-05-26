@@ -34,9 +34,10 @@ for l in open(FILE_IN, 'r').readlines():
 
 f = open(FILE_OUT, 'w').writelines(nlines)
 
-os.system('kompare %s %s' % ( FILE_OUT, FILE_IN ))
+#os.system('kompare %s %s' % ( FILE_OUT, FILE_IN ))
 
-
+import shutil
+shutil.copy( FILE_OUT, FILE_IN )
 
 
 
