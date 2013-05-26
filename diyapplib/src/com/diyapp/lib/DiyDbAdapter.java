@@ -22,7 +22,7 @@ import android.util.Log;
  */
 public class DiyDbAdapter {
 	// increase version after modifying columns, clean and rebuild library AND project!
-	private static final int DATABASE_VERSION = 19;
+	private static final int DATABASE_VERSION = 20;
 
 	private static final String DATABASE_NAME = "data2";
 	private static final String DATABASE_TABLE = "diys";
@@ -34,9 +34,6 @@ public class DiyDbAdapter {
 	// TEMPLATE_edit: public static final String KEY_{uppercase} = "{lowercase}";//
 
 	// triggers
-	public static final String KEY_TRIGGER_EXAMPLE = "trigger_example";
-	public static final String KEY_TRIGGER_EXAMPLE_PARAM_1 = "trigger_example_param_1";
-
 	public static final String KEY_TRIGGER_LOCATION = "trigger_location";
 	public static final String KEY_TRIGGER_LOCATION_PARAM_LATITUDE = "trigger_location_param_latitude";
 	public static final String KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE = "trigger_location_param_longtitude";
@@ -78,9 +75,6 @@ public class DiyDbAdapter {
 			// TEMPLATE_edit: KEY_{uppercase},//
 
 			// triggers
-			KEY_TRIGGER_EXAMPLE, //
-			KEY_TRIGGER_EXAMPLE_PARAM_1, //
-
 			KEY_TRIGGER_LOCATION, //
 			KEY_TRIGGER_LOCATION_PARAM_LATITUDE, //
 			KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE, //
@@ -132,10 +126,6 @@ public class DiyDbAdapter {
 			// TEMPLATE_edit: + KEY_{uppercase} + " {dbtype} not null,"//
 
 			// triggers
-			+ KEY_TRIGGER_EXAMPLE + " integer not null, " // 0|1 is this trigger
-															// active ?
-			+ KEY_TRIGGER_EXAMPLE_PARAM_1 + " text not null, " //
-
 			+ KEY_TRIGGER_LOCATION + " integer not null, " //
 			+ KEY_TRIGGER_LOCATION_PARAM_LATITUDE + " real not null, " //
 			+ KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE + " real not null, " //
@@ -243,9 +233,6 @@ public class DiyDbAdapter {
 		// TEMPLATE_edit: initialValues.put(KEY_{uppercase}, {default_value});//
 
 		// triggers
-		initialValues.put(KEY_TRIGGER_EXAMPLE, 0);
-		initialValues.put(KEY_TRIGGER_EXAMPLE_PARAM_1, "");
-
 		initialValues.put(KEY_TRIGGER_LOCATION, 0);
 		initialValues.put(KEY_TRIGGER_LOCATION_PARAM_LATITUDE, 0.0);
 		initialValues.put(KEY_TRIGGER_LOCATION_PARAM_LONGTITUDE, 0.0);
@@ -356,15 +343,11 @@ public class DiyDbAdapter {
 			boolean trigger_wifi,//
 			String trigger_wifi_param_ssid,//
 			// TEMPLATE_triggers: {vartype} {lowercase},//
-			boolean trigger_example_enabled, String trigger_example_param_1,
 			boolean trigger_location_enabled,
 			double trigger_location_param_latitude,
 			double trigger_location_param_longtitude,
 			double trigger_location_param_area) {
 		ContentValues args = new ContentValues();
-		args.put(KEY_TRIGGER_EXAMPLE, trigger_example_enabled ? 1 : 0);
-		args.put(KEY_TRIGGER_EXAMPLE_PARAM_1, trigger_example_param_1);
-
 		args.put(KEY_TRIGGER_LOCATION, trigger_location_enabled ? 1 : 0);
 		args.put(KEY_TRIGGER_LOCATION_PARAM_LATITUDE,
 				trigger_location_param_latitude);

@@ -27,9 +27,6 @@ public class DiyEditTriggersActivity extends Activity {
 	ToggleButton mtrigger_date_enabled;
 	TextView mtrigger_date_param_from;
 	TextView mtrigger_date_param_to;
-	
-	ToggleButton mtrigger_example_enabled;
-	EditText mtrigger_example_param_1;
 
 	ToggleButton mtrigger_location_enabled;
 	static TextView mtrigger_location_param_latitude;
@@ -63,9 +60,6 @@ public class DiyEditTriggersActivity extends Activity {
 		mtrigger_date_enabled = (ToggleButton) findViewById(R.id.trigger_date_enabled);
 		mtrigger_date_param_from = (TextView) findViewById(R.id.trigger_date_param_from);
 		mtrigger_date_param_to = (TextView) findViewById(R.id.trigger_date_param_to);
-		
-		mtrigger_example_enabled = (ToggleButton) findViewById(R.id.trigger_example_enabled);
-		mtrigger_example_param_1 = (EditText) findViewById(R.id.trigger_example_param_1);
 
 		mtrigger_location_enabled = (ToggleButton) findViewById(R.id.trigger_location_enabled);
 		mtrigger_location_param_latitude = (TextView) findViewById(R.id.trigger_location_param_latitude);
@@ -105,13 +99,6 @@ public class DiyEditTriggersActivity extends Activity {
 			startManagingCursor(diy);
 
 			// triggers
-
-			mtrigger_example_enabled.setChecked(1 == diy.getInt(diy
-					.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_EXAMPLE)));
-			mtrigger_example_param_1
-					.setText(diy.getString(diy
-							.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_EXAMPLE_PARAM_1)));
-			
 			mtrigger_wifi_enabled.setChecked(1 == diy.getInt(diy
 					.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_WIFI)));
 			mtrigger_wifi_param_ssid
@@ -202,8 +189,6 @@ public class DiyEditTriggersActivity extends Activity {
 				mtrigger_date_param_to.getText().toString(),
 				mtrigger_wifi_enabled.isChecked(), //
 				mtrigger_wifi_param_ssid.getText().toString(),
-				mtrigger_example_enabled.isChecked(), //
-				mtrigger_example_param_1.getText().toString(),
 				mtrigger_location_enabled.isChecked(), //
 				var_latitude, //
 				var_longtitude, //
