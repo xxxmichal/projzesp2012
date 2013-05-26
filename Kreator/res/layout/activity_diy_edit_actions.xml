@@ -191,6 +191,97 @@
                 android:ems="10" />
         </LinearLayout>
         <!-- break -->
+
+
+        <!-- spacer current -->
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2px"
+            android:background="@drawable/i1x1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ToggleButton
+                android:id="@+id/action_widgettext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Widget Text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="Widget Text"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/label_action_widgettext_param_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="Text" />
+
+            <EditText
+                android:id="@+id/action_widgettext_param_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10" />
+        </LinearLayout>
+            <!-- checkboxes -->
+
+            <CheckBox
+                android:id="@+id/action_widgettext_param_display_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:text="date" />
+
+            <CheckBox
+                android:id="@+id/action_widgettext_param_display_coordinates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:text="coordinates" />
+
+            <CheckBox
+                android:id="@+id/action_widgettext_param_display_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:text="address" />
+
+            <CheckBox
+                android:id="@+id/action_widgettext_param_display_wifissid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:text="wifi ssid" />
+
+            <CheckBox
+                android:id="@+id/action_widgettext_param_display_action_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:text="action_description" />
+
+        <!-- break -->
+
     </LinearLayout>
 
 </ScrollView>

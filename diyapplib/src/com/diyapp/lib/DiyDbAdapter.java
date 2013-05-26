@@ -22,7 +22,7 @@ import android.util.Log;
  */
 public class DiyDbAdapter {
 	// increase version after modifying columns, clean and rebuild library AND project!
-	private static final int DATABASE_VERSION = 15;
+	private static final int DATABASE_VERSION = 17;
 
 	private static final String DATABASE_NAME = "data2";
 	private static final String DATABASE_TABLE = "diys";
@@ -57,6 +57,13 @@ public class DiyDbAdapter {
 	public static final String KEY_ACTION_NOTIFICATION = "action_notification";//
 	public static final String KEY_ACTION_NOTIFICATION_PARAM_TEXT = "action_notification_param_text";//
 	public static final String KEY_ACTION_NOTIFICATION_PARAM_TITLE = "action_notification_param_title";//
+	public static final String KEY_ACTION_WIDGETTEXT = "action_widgettext";//
+	public static final String KEY_ACTION_WIDGETTEXT_PARAM_TEXT = "action_widgettext_param_text";//
+	public static final String KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_DATE = "action_widgettext_param_display_date";//
+	public static final String KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_COORDINATES = "action_widgettext_param_display_coordinates";//
+	public static final String KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_ADDRESS = "action_widgettext_param_display_address";//
+	public static final String KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_WIFISSID = "action_widgettext_param_display_wifissid";//
+	public static final String KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_ACTION_DESCRIPTION = "action_widgettext_param_display_action_description";//
 	// TEMPLATE_actions: public static final String KEY_{uppercase} = "{lowercase}";//
 
 	public static final String KEY_ACTION_EXAMPLE = "action_example";
@@ -92,6 +99,13 @@ public class DiyDbAdapter {
 			KEY_ACTION_NOTIFICATION,//
 			KEY_ACTION_NOTIFICATION_PARAM_TEXT,//
 			KEY_ACTION_NOTIFICATION_PARAM_TITLE,//
+			KEY_ACTION_WIDGETTEXT,//
+			KEY_ACTION_WIDGETTEXT_PARAM_TEXT,//
+			KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_DATE,//
+			KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_COORDINATES,//
+			KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_ADDRESS,//
+			KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_WIFISSID,//
+			KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_ACTION_DESCRIPTION,//
 			// TEMPLATE_actions: KEY_{uppercase},//
 			KEY_ACTION_EXAMPLE, //
 			KEY_ACTION_EXAMPLE_PARAM_1 }; //
@@ -136,6 +150,13 @@ public class DiyDbAdapter {
 			+ KEY_ACTION_NOTIFICATION + " integer not null,"//
 			+ KEY_ACTION_NOTIFICATION_PARAM_TEXT + " text not null,"//
 			+ KEY_ACTION_NOTIFICATION_PARAM_TITLE + " text not null,"//
+			+ KEY_ACTION_WIDGETTEXT + " integer not null,"//
+			+ KEY_ACTION_WIDGETTEXT_PARAM_TEXT + " text not null,"//
+			+ KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_DATE + " integer not null,"//
+			+ KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_COORDINATES + " integer not null,"//
+			+ KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_ADDRESS + " integer not null,"//
+			+ KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_WIFISSID + " integer not null,"//
+			+ KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_ACTION_DESCRIPTION + " integer not null,"//
 			// TEMPLATE_actions: + KEY_{uppercase} + " {dbtype} not null,"//
 
 			+ KEY_ACTION_EXAMPLE + " integer not null, " // 0|1 is this action
@@ -240,6 +261,13 @@ public class DiyDbAdapter {
 		initialValues.put(KEY_ACTION_NOTIFICATION, 0);//
 		initialValues.put(KEY_ACTION_NOTIFICATION_PARAM_TEXT, "");//
 		initialValues.put(KEY_ACTION_NOTIFICATION_PARAM_TITLE, "");//
+		initialValues.put(KEY_ACTION_WIDGETTEXT, 0);//
+		initialValues.put(KEY_ACTION_WIDGETTEXT_PARAM_TEXT, "");//
+		initialValues.put(KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_DATE, 1);//
+		initialValues.put(KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_COORDINATES, 1);//
+		initialValues.put(KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_ADDRESS, 1);//
+		initialValues.put(KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_WIFISSID, 1);//
+		initialValues.put(KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_ACTION_DESCRIPTION, 1);//
 		// TEMPLATE_actions: initialValues.put(KEY_{uppercase}, {default_value});//
 
 		return mDb.insert(DATABASE_TABLE, null, initialValues);
@@ -354,6 +382,13 @@ public class DiyDbAdapter {
 			boolean action_notification,//
 			String action_notification_param_text,//
 			String action_notification_param_title,//
+			boolean action_widgettext,//
+			String action_widgettext_param_text,//
+			boolean action_widgettext_param_display_date,//
+			boolean action_widgettext_param_display_coordinates,//
+			boolean action_widgettext_param_display_address,//
+			boolean action_widgettext_param_display_wifissid,//
+			boolean action_widgettext_param_display_action_description,//
 			// TEMPLATE_actions: {vartype} {lowercase},//
 			boolean action_example_enabled,
 			String action_example_param_1) {
@@ -367,6 +402,13 @@ public class DiyDbAdapter {
 		args.put(KEY_ACTION_NOTIFICATION, action_notification ? 1 : 0);
 		args.put(KEY_ACTION_NOTIFICATION_PARAM_TEXT, action_notification_param_text);
 		args.put(KEY_ACTION_NOTIFICATION_PARAM_TITLE, action_notification_param_title);
+		args.put(KEY_ACTION_WIDGETTEXT, action_widgettext ? 1 : 0);
+		args.put(KEY_ACTION_WIDGETTEXT_PARAM_TEXT, action_widgettext_param_text);
+		args.put(KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_DATE, action_widgettext_param_display_date ? 1 : 0);
+		args.put(KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_COORDINATES, action_widgettext_param_display_coordinates ? 1 : 0);
+		args.put(KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_ADDRESS, action_widgettext_param_display_address ? 1 : 0);
+		args.put(KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_WIFISSID, action_widgettext_param_display_wifissid ? 1 : 0);
+		args.put(KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_ACTION_DESCRIPTION, action_widgettext_param_display_action_description ? 1 : 0);
 		// TEMPLATE_actions: args.put(KEY_{uppercase}, {lowercase}{cmp});
 
 		return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;

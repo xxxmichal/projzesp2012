@@ -20,6 +20,13 @@ public class DiyEditActionsActivity extends Activity {
 	ToggleButton maction_notification;//
 	EditText maction_notification_param_title;//
 	EditText maction_notification_param_text;//
+	ToggleButton maction_widgettext;//
+	EditText maction_widgettext_param_text;//
+	CheckBox maction_widgettext_param_display_date;//
+	CheckBox maction_widgettext_param_display_coordinates;//
+	CheckBox maction_widgettext_param_display_address;//
+	CheckBox maction_widgettext_param_display_wifissid;//
+	CheckBox maction_widgettext_param_display_action_description;//
 	// TEMPLATE: {field} m{lowercase};//
 	
 	Long mRowId;
@@ -46,6 +53,13 @@ public class DiyEditActionsActivity extends Activity {
 		maction_notification = (ToggleButton) findViewById(R.id.action_notification);//
 		maction_notification_param_title = (EditText) findViewById(R.id.action_notification_param_title);//
 		maction_notification_param_text = (EditText) findViewById(R.id.action_notification_param_text);//
+		maction_widgettext = (ToggleButton) findViewById(R.id.action_widgettext);//
+		maction_widgettext_param_text = (EditText) findViewById(R.id.action_widgettext_param_text);//
+		maction_widgettext_param_display_date = (CheckBox) findViewById(R.id.action_widgettext_param_display_date);//
+		maction_widgettext_param_display_coordinates = (CheckBox) findViewById(R.id.action_widgettext_param_display_coordinates);//
+		maction_widgettext_param_display_address = (CheckBox) findViewById(R.id.action_widgettext_param_display_address);//
+		maction_widgettext_param_display_wifissid = (CheckBox) findViewById(R.id.action_widgettext_param_display_wifissid);//
+		maction_widgettext_param_display_action_description = (CheckBox) findViewById(R.id.action_widgettext_param_display_action_description);//
 		// TEMPLATE: m{lowercase} = ({field}) findViewById(R.id.{lowercase});//
 	
 		populateFields();
@@ -77,6 +91,13 @@ public class DiyEditActionsActivity extends Activity {
 			maction_notification.setChecked( 1 == diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_NOTIFICATION)));//
 			maction_notification_param_title.setText(diy.getString(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_NOTIFICATION_PARAM_TITLE)));//
 			maction_notification_param_text.setText(diy.getString(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_NOTIFICATION_PARAM_TEXT)));//
+			maction_widgettext.setChecked( 1 == diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_WIDGETTEXT)));//
+			maction_widgettext_param_text.setText(diy.getString(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_WIDGETTEXT_PARAM_TEXT)));//
+			maction_widgettext_param_display_date.setChecked( 1 == diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_DATE)));//
+			maction_widgettext_param_display_coordinates.setChecked( 1 == diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_COORDINATES)));//
+			maction_widgettext_param_display_address.setChecked( 1 == diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_ADDRESS)));//
+			maction_widgettext_param_display_wifissid.setChecked( 1 == diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_WIFISSID)));//
+			maction_widgettext_param_display_action_description.setChecked( 1 == diy.getInt(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_WIDGETTEXT_PARAM_DISPLAY_ACTION_DESCRIPTION)));//
 			// TEMPLATE: m{lowercase}.{diyget}(diy.getColumnIndexOrThrow(DiyDbAdapter.KEY_{uppercase})));//
 		}
 	}
@@ -109,6 +130,13 @@ public class DiyEditActionsActivity extends Activity {
 				maction_notification.isChecked(),//
 				maction_notification_param_title.getText().toString(),//
 				maction_notification_param_text.getText().toString(),//
+				maction_widgettext.isChecked(),//
+				maction_widgettext_param_text.getText().toString(),//
+				maction_widgettext_param_display_date.isChecked(),//
+				maction_widgettext_param_display_coordinates.isChecked(),//
+				maction_widgettext_param_display_address.isChecked(),//
+				maction_widgettext_param_display_wifissid.isChecked(),//
+				maction_widgettext_param_display_action_description.isChecked(),//
 				// TEMPLATE: m{lowercase}.{retrieve}(),//
 				maction_example.isChecked(),
 				maction_example_param_1.getText().toString());
