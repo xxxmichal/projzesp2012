@@ -22,7 +22,7 @@ import android.util.Log;
  */
 public class DiyDbAdapter {
 	// increase version after modifying columns, clean and rebuild library AND project!
-	private static final int DATABASE_VERSION = 11;
+	private static final int DATABASE_VERSION = 12;
 
 	private static final String DATABASE_NAME = "data2";
 	private static final String DATABASE_TABLE = "diys";
@@ -45,6 +45,8 @@ public class DiyDbAdapter {
 	public static final String KEY_TRIGGER_DATE = "trigger_date";//
 	public static final String KEY_TRIGGER_DATE_PARAM_FROM = "trigger_date_param_from";//
 	public static final String KEY_TRIGGER_DATE_PARAM_TO = "trigger_date_param_to";//
+	public static final String KEY_TRIGGER_WIFI = "trigger_wifi";//
+	public static final String KEY_TRIGGER_WIFI_PARAM_SSID = "trigger_wifi_param_ssid";//
 	// TEMPLATE_triggers: public static final String KEY_{uppercase} = "{lowercase}";//
 
 	// actions
@@ -71,6 +73,8 @@ public class DiyDbAdapter {
 			KEY_TRIGGER_DATE,//
 			KEY_TRIGGER_DATE_PARAM_FROM,//
 			KEY_TRIGGER_DATE_PARAM_TO,//
+			KEY_TRIGGER_WIFI,//
+			KEY_TRIGGER_WIFI_PARAM_SSID,//
 			// TEMPLATE_triggers: KEY_{uppercase},//
 
 			// actions
@@ -106,6 +110,8 @@ public class DiyDbAdapter {
 			+ KEY_TRIGGER_DATE + " integer not null,"//
 			+ KEY_TRIGGER_DATE_PARAM_FROM + " text not null,"//
 			+ KEY_TRIGGER_DATE_PARAM_TO + " text not null,"//
+			+ KEY_TRIGGER_WIFI + " integer not null,"//
+			+ KEY_TRIGGER_WIFI_PARAM_SSID + " text not null,"//
 			// TEMPLATE_triggers: + KEY_{uppercase} + " {dbtype} not null,"//
 
 			// actions
@@ -199,6 +205,8 @@ public class DiyDbAdapter {
 		initialValues.put(KEY_TRIGGER_DATE, 0);//
 		initialValues.put(KEY_TRIGGER_DATE_PARAM_FROM, "");//
 		initialValues.put(KEY_TRIGGER_DATE_PARAM_TO, "");//
+		initialValues.put(KEY_TRIGGER_WIFI, 0);//
+		initialValues.put(KEY_TRIGGER_WIFI_PARAM_SSID, "");//
 		// TEMPLATE_triggers: initialValues.put(KEY_{uppercase}, {default_value});//
 
 		// actions
@@ -281,6 +289,8 @@ public class DiyDbAdapter {
 			boolean trigger_date,
 			String trigger_date_param_from,
 			String trigger_date_param_to,
+			boolean trigger_wifi,//
+			String trigger_wifi_param_ssid,//
 			// TEMPLATE_triggers: {vartype} {lowercase},//
 			boolean trigger_example_enabled, String trigger_example_param_1,
 			boolean trigger_location_enabled,
@@ -299,6 +309,8 @@ public class DiyDbAdapter {
 		args.put(KEY_TRIGGER_DATE, trigger_date  ? 1 : 0);
 		args.put(KEY_TRIGGER_DATE_PARAM_FROM, trigger_date_param_from);
 		args.put(KEY_TRIGGER_DATE_PARAM_TO, trigger_date_param_to);
+		args.put(KEY_TRIGGER_WIFI, trigger_wifi);
+		args.put(KEY_TRIGGER_WIFI_PARAM_SSID, trigger_wifi_param_ssid);
 		// TEMPLATE_triggers: args.put(KEY_{uppercase}, {lowercase});
 		// must add '? 1 : 0' manually
 

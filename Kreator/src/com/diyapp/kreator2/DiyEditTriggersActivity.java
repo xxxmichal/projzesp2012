@@ -21,6 +21,9 @@ public class DiyEditTriggersActivity extends Activity {
 	private static final int ACTIVITY_DATE_PICKER_FROM = 3;
 	private static final int ACTIVITY_DATE_PICKER_TO = 4;
 	
+	ToggleButton mtrigger_wifi_enabled;
+	TextView mtrigger_wifi_param_ssid;
+	
 	ToggleButton mtrigger_date_enabled;
 	TextView mtrigger_date_param_from;
 	TextView mtrigger_date_param_to;
@@ -54,6 +57,9 @@ public class DiyEditTriggersActivity extends Activity {
 		setTitle(R.string.edit_diy);
 
 		// triggers
+		mtrigger_wifi_enabled = (ToggleButton) findViewById(R.id.trigger_wifi_enabled);
+		mtrigger_wifi_param_ssid = (EditText) findViewById(R.id.trigger_wifi_param_ssid);
+		
 		mtrigger_date_enabled = (ToggleButton) findViewById(R.id.trigger_date_enabled);
 		mtrigger_date_param_from = (TextView) findViewById(R.id.trigger_date_param_from);
 		mtrigger_date_param_to = (TextView) findViewById(R.id.trigger_date_param_to);
@@ -105,6 +111,13 @@ public class DiyEditTriggersActivity extends Activity {
 			mtrigger_example_param_1
 					.setText(diy.getString(diy
 							.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_EXAMPLE_PARAM_1)));
+			
+			mtrigger_wifi_enabled.setChecked(1 == diy.getInt(diy
+					.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_WIFI)));
+			mtrigger_wifi_param_ssid
+					.setText(diy.getString(diy
+							.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_WIFI_PARAM_SSID)));
+			
 
 			mtrigger_location_enabled.setChecked(1 == diy.getInt(diy
 					.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_LOCATION)));
@@ -187,6 +200,8 @@ public class DiyEditTriggersActivity extends Activity {
 				mtrigger_date_enabled.isChecked(),
 				mtrigger_date_param_from.getText().toString(),
 				mtrigger_date_param_to.getText().toString(),
+				mtrigger_wifi_enabled.isChecked(), //
+				mtrigger_wifi_param_ssid.getText().toString(),
 				mtrigger_example_enabled.isChecked(), //
 				mtrigger_example_param_1.getText().toString(),
 				mtrigger_location_enabled.isChecked(), //
