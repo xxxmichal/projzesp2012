@@ -1,0 +1,61 @@
+/insert_DiyDbAdapter.py hello triggers text '""'
+
+./insert_DiyDbAdapter.py action_notification actions integer 0
+
+./insert_DiyDbAdapter.py trigger_date triggers integer 0
+./insert_DiyDbAdapter.py trigger_date_param_from triggers text '""'
+./insert_DiyDbAdapter.py trigger_date_param_to triggers text '""'
+
+./insert_DiyDbAdapter.py trigger_wifi triggers integer 0 boolean
+./insert_DiyDbAdapter.py trigger_wifi_param_ssid triggers text '""' String
+
+./insert_DiyDbAdapter.py action_wifi actions integer 0 boolean ' ? 1 : 0'
+./insert_DiyDbAdapter.py action_wifi_param_turn_on actions integer 0 boolean ' ? 1 : 0'
+./insert_DiyDbAdapter.py action_wifi_param_turn_off actions integer 0 boolean ' ? 1 : 0'
+./insert_DiyDbAdapter.py action_wifi_param_ssid actions text '""' String ''
+
+./insert_DiyDbAdapter.py action_notification actions integer 0 boolean ' ? 1 : 0'
+./insert_DiyDbAdapter.py action_notification_param_title actions text '""' String ''
+./insert_DiyDbAdapter.py action_notification_param_text actions text '""' String ''
+
+//--
+./insert_DiyDbAdapter.py action_widgettext actions integer 0 boolean ' ? 1 : 0'
+./insert_DiyDbAdapter.py action_widgettext_param_text actions text '""' String ''
+./insert_DiyDbAdapter.py action_widgettext_param_text actions text '""' String ''
+./insert_DiyDbAdapter.py action_widgettext_param_display_date actions integer 0 boolean ' ? 1 : 0'
+./insert_DiyDbAdapter.py action_widgettext_param_display_coordinates actions integer 0 boolean ' ? 1 : 0'
+./insert_DiyDbAdapter.py action_widgettext_param_display_address actions integer 0 boolean ' ? 1 : 0'
+./insert_DiyDbAdapter.py action_widgettext_param_display_wifissid actions integer 0 boolean ' ? 1 : 0'
+./insert_DiyDbAdapter.py action_widgettext_param_display_action_description actions integer 0 boolean ' ? 1 : 0'
+
+
+./insert_diyaction.py action_widgettext ToggleButton 'setChecked( 1 == diy.getInt' 'isChecked'
+./insert_diyaction.py action_widgettext_param_text EditText 'setText(diy.getString' 'getText().toString'
+./insert_diyaction.py action_widgettext_param_display_date CheckBox 'setChecked( 1 == diy.getInt' 'isChecked'
+./insert_diyaction.py action_widgettext_param_display_coordinates CheckBox 'setChecked( 1 == diy.getInt' 'isChecked'
+./insert_diyaction.py action_widgettext_param_display_address CheckBox 'setChecked( 1 == diy.getInt' 'isChecked'
+./insert_diyaction.py action_widgettext_param_display_wifissid CheckBox 'setChecked( 1 == diy.getInt' 'isChecked'
+./insert_diyaction.py action_widgettext_param_display_action_description CheckBox 'setChecked( 1 == diy.getInt' 'isChecked'
+//--
+
+./insert_DiyDbAdapter.py action_soundprofile actions integer 0 boolean ' ? 1 : 0'
+
+./insert_DiyDbAdapter.py action_soundprofile_param_profile_sound actions integer 0 boolean ' ? 1 : 0'
+./insert_DiyDbAdapter.py action_soundprofile_param_profile_vibrations actions integer 0 boolean ' ? 1 : 0'
+./insert_DiyDbAdapter.py action_soundprofile_param_volume actions integer 0 int ''
+
+
+./insert_diyaction.py action_soundprofile ToggleButton 'setChecked( 1 == diy.getInt' 'isChecked'
+./insert_diyaction.py action_soundprofile_param_profile_sound CheckBox 'setChecked( 1 == diy.getInt' 'isChecked'
+./insert_diyaction.py action_soundprofile_param_profile_vibrations CheckBox 'setChecked( 1 == diy.getInt' 'isChecked'
+./insert_diyaction.py action_soundprofile_param_volume SeekBar 'setProgress( diy.getInt' 'getProgress'
+
+//--
+./insert_diyaction.py action_wifi ToggleButton 'setChecked( 1 == diy.getInt' 'isChecked'
+./insert_diyaction.py action_wifi_param_turn_on CheckBox 'setChecked( 1 == diy.getInt' 'isChecked'
+./insert_diyaction.py action_wifi_param_turn_off CheckBox 'setChecked( 1 == diy.getInt' 'isChecked'
+./insert_diyaction.py action_wifi_param_ssid EditText 'setText(diy.getString' 'getText().toString'
+
+./insert_diyaction.py action_notification ToggleButton 'setChecked( 1 == diy.getInt' 'isChecked'
+./insert_diyaction.py action_notification_param_title EditText 'setText(diy.getString' 'getText().toString'
+./insert_diyaction.py action_notification_param_text EditText 'setText(diy.getString' 'getText().toString'
