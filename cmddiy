@@ -1,3 +1,9 @@
+- ssid
+- repeatable days
+- limit slider width
+
+
+
 /insert_DiyDbAdapter.py hello triggers text '""'
 
 ./insert_DiyDbAdapter.py action_notification actions integer 0

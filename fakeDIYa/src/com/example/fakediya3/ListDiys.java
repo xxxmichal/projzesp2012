@@ -1,26 +1,30 @@
-package com.example.fakediya;
+package com.example.fakediya3;
 
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import com.diyapp.lib.DiyDbAdapter;
-import com.example.fakediya2.R;
+import com.example.fakediya3.R;
 
 public class ListDiys extends ListActivity {
-    private static final int ACTIVITY_CREATE=0;
-    private static final int ACTIVITY_EDIT=1;
+
+    private static final int ACTIVITY_SHOW=1;
     
     private static final int INSERT_ID = Menu.FIRST;
     private static final int DELETE_ID = Menu.FIRST + 1;
 
-    private DiyDbAdapter mDbHelper;
+
+    static DiyDbAdapter mDbHelper;
     
     /** Called when the activity is first created. */
     @Override
@@ -56,16 +60,29 @@ public class ListDiys extends ListActivity {
         startManagingCursor(diysCursor);
         
         // Create an array to specify the fields we want to display in the list (only TITLE)
-        String[] from = new String[]{DiyDbAdapter.KEY_TITLE};
+        String[] from = new String[]{DiyDbAdapter.KEY_ROWID, DiyDbAdapter.KEY_TITLE};
         
         // and an array of the fields we want to bind those fields to (in this case just text1)
-        int[] to = new int[]{R.id.text1};
+        int[] to = new int[]{R.id.textid1, R.id.text1};
         
         // Now create a simple cursor adapter and set it to display
         SimpleCursorAdapter diys = 
         	    new SimpleCursorAdapter(this, R.layout.diys_row, diysCursor, from, to);
         setListAdapter(diys);
     }
+    
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+
+		Intent i = new Intent(this, ShowDiyActivity.class);
+		i.putExtra(DiyDbAdapter.KEY_ROWID, id);
+
+		startActivityForResult(i, ACTIVITY_SHOW);
+
+		// TODO: fill in rest of method
+
+	}
     
 
 }

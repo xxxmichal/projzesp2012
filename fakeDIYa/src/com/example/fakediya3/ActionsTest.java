@@ -1,8 +1,9 @@
-package com.example.fakediya;
+package com.example.fakediya3;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import com.example.fakediya3.R;
 
 public class ActionsTest extends Activity {
 

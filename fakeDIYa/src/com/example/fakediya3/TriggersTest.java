@@ -1,4 +1,4 @@
-package com.example.fakediya;
+package com.example.fakediya3;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
+import com.example.fakediya3.R;
 
 public class TriggersTest extends Activity {
 
@@ -205,11 +206,11 @@ public class TriggersTest extends Activity {
             		waga = Double.parseDouble(wagaView.getText().toString());
             	else{waga = 0.0;}
             	}catch(Exception e){
-            		Toast.makeText(getApplicationContext(), "Nie wprowadzono wartoœci!", Toast.LENGTH_SHORT).show();
+            		Toast.makeText(getApplicationContext(), "Nie wprowadzono wartoï¿½ci!", Toast.LENGTH_SHORT).show();
             	}
             	
             	if(waga == 0.0 || wzrost == 0){
-            		Toast.makeText(getApplicationContext(), "Nie wprowadzono wartoœci!", Toast.LENGTH_SHORT).show();
+            		Toast.makeText(getApplicationContext(), "Nie wprowadzono wartoï¿½ci!", Toast.LENGTH_SHORT).show();
             	}            	
             	else if(radioPrzycisk.getText().equals("Kobieta")){
             		Intent intent = new Intent(getApplicationContext(), IdealneProporcjeKobiety.class);

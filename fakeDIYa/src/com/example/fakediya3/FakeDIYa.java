@@ -1,4 +1,4 @@
-package com.example.fakediya;
+package com.example.fakediya3;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -30,6 +30,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.fakediya3.R;
 
 public class FakeDIYa extends Activity {
 	
@@ -72,11 +73,11 @@ public class FakeDIYa extends Activity {
 	            		waga = Double.parseDouble(wagaView.getText().toString());
 	            	else{waga = 0.0;}
 	            	}catch(Exception e){
-	            		Toast.makeText(getApplicationContext(), "Nie wprowadzono wartoœci!", Toast.LENGTH_SHORT).show();
+	            		Toast.makeText(getApplicationContext(), "Nie wprowadzono wartoï¿½ci!", Toast.LENGTH_SHORT).show();
 	            	}
 	            	
 	            	if(waga == 0.0 || wzrost == 0){
-	            		Toast.makeText(getApplicationContext(), "Nie wprowadzono wartoœci!", Toast.LENGTH_SHORT).show();
+	            		Toast.makeText(getApplicationContext(), "Nie wprowadzono wartoï¿½ci!", Toast.LENGTH_SHORT).show();
 	            	}            	
 	            	else if(radioPrzycisk.getText().equals("Kobieta")){
 	            		Intent intent = new Intent(getApplicationContext(), IdealneProporcjeKobiety.class);
@@ -122,18 +123,18 @@ public class FakeDIYa extends Activity {
 			    notification.number = 3;
 			    notification.flags |= Notification.FLAG_AUTO_CANCEL;//powiadomienie zniknie gdy kliniemy na nie
 			      /*
-			       * Flagi powiadomieñ
+			       * Flagi powiadomieï¿½
 
-					Kolejnym wa¿nym elementem s¹ flagi naszego powiadomienia. Odpowiadaj¹ one za kilka ró¿nych ustawieñ. Oto niektóre z nich:
+					Kolejnym waï¿½nym elementem sï¿½ flagi naszego powiadomienia. Odpowiadajï¿½ one za kilka rï¿½nych ustawieï¿½. Oto niektï¿½re z nich:
 
-			    		Notification.FLAG_AUTO_CANCEL – sprawia, ¿e powiadomienie znika zaraz po klikniêciu,
-			    		Notification.FLAG_NO_CLEAR – powiadomienie nie zostanie usuniête po klikniêciu w przycisk Clear/Wyczyœæ,
-			    		Notification.FLAG_FOREGROUND_SERVICE – powiadomienie które przychodzi od aktualnie dzia³aj¹cego serwisu,
-			    		Notification.FLAG_ONGOING_EVENT – powiadomienie przychodz¹ce z ci¹gle jeszcze dzia³aj¹cego Ÿród³a (oczekuj¹ce po³¹czenie telefoniczne).
+			    		Notification.FLAG_AUTO_CANCEL ï¿½ sprawia, ï¿½e powiadomienie znika zaraz po klikniï¿½ciu,
+			    		Notification.FLAG_NO_CLEAR ï¿½ powiadomienie nie zostanie usuniï¿½te po klikniï¿½ciu w przycisk Clear/Wyczyï¿½ï¿½,
+			    		Notification.FLAG_FOREGROUND_SERVICE ï¿½ powiadomienie ktï¿½re przychodzi od aktualnie dziaï¿½ajï¿½cego serwisu,
+			    		Notification.FLAG_ONGOING_EVENT ï¿½ powiadomienie przychodzï¿½ce z ciï¿½gle jeszcze dziaï¿½ajï¿½cego ï¿½rï¿½dï¿½a (oczekujï¿½ce poï¿½ï¿½czenie telefoniczne).
 
 			       */
 			    String notificationTitle = "Takie sobie";
-			    String notificationText = "Klikniêcie w³¹cza iSODa w przegl¹darce";
+			    String notificationText = "Klikniï¿½cie wï¿½ï¿½cza iSODa w przeglï¿½darce";
 			    
 			    //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.isod.ee.pw.edu.pl"));
 			    Intent intent = null;
@@ -277,7 +278,7 @@ public class FakeDIYa extends Activity {
 					text.setText("true");
 				}	
 				else{
-					//System.out.println("sru cztery i pó³");
+					//System.out.println("sru cztery i pï¿½");
 					text.setText("false");
 				}
 				
@@ -375,7 +376,7 @@ public class FakeDIYa extends Activity {
 					//text.setText("true");
 				}	
 				else{
-					System.out.println("sru cztery i pó³");
+					System.out.println("sru cztery i pï¿½");
 					//text.setText("false");
 					Toast.makeText(getApplicationContext(), "Wlaczam wIfi", Toast.LENGTH_SHORT).show();
 					wifimanager.setWifiEnabled(true);
@@ -458,5 +459,12 @@ public class FakeDIYa extends Activity {
         locationManager.removeUpdates(locationListener);
         super.onStop();
     }
+    
+    
  */
+	
+	public void showDb(View v) {
+		Intent i = new Intent(this, ListDiys.class);
+		startActivity(i);
+	}
 }

@@ -6,5 +6,6 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_triggers_test">Triggers Test</string>
     <string name="title_activity_actions_test">Actions Test</string>
+    <string name="title_activity_show_diy">ShowDiyActivity</string>
 
 </resources>
