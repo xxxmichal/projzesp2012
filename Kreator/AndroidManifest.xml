@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.diyapp.kreator2"
+    android:sharedUserId="com.diyapp.kreator2"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="17" />
+
+    <permission
+        android:name="com.diyapp.kreator2.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.network"
+        android:required="false" />
+    <uses-feature android:name="android.hardware.location.gps" />
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false" />
+
+    <uses-permission android:name="com.diyapp.kreator2.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name" >
+        <activity
+            android:name="com.diyapp.kreator2.Diy"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.diyapp.kreator2.DiyEdit" >
+        </activity>
+        <activity android:name="com.diyapp.kreator2.AndroidTabAndListView" />
+        <activity
+            android:name="com.diyapp.kreator2.DiyEditTriggersActivity"
+            android:label="@string/title_activity_diy_edit_triggers" >
+        </activity>
+        <activity
+            android:name="com.diyapp.kreator2.DiyEditActionsActivity"
+            android:label="@string/title_activity_diy_edit_actions" >
+        </activity>
+        <activity
+            android:name="com.diyapp.kreator2.DiyMapActivity"
+            android:label="@string/title_activity_diy_map" >
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDklCL1cdWj9KOtZAOC23GxzOogip4zUto" />
+
+        <activity
+            android:name="com.diyapp.kreator2.MainActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name="com.diyapp.kreator2.DiyDatePicker"
+            android:label="@string/title_activity_diy_date_picker" >
+        </activity>
+    </application>
+
+</manifest>
