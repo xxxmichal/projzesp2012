@@ -7,6 +7,7 @@ import java.util.TimerTask;
 import com.diyapp.lib.DiyDbAdapter;
 
 import pl.diya.execute2.IRemoteService.Stub;
+//import com.example.mainactivity.MainActivity;
 
 import android.app.Service;
 import android.content.Context;
@@ -20,7 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.diyapp.lib.DiyDbAdapter;
 
 public class Execute extends Service {
 
@@ -39,7 +39,7 @@ public class Execute extends Service {
 
 		@Override
 		public String sayHello(String message) throws RemoteException {
-			android.os.Debug.waitForDebugger();
+			//android.os.Debug.waitForDebugger();
 			
 			Context ctx = null;
 			try {
@@ -88,7 +88,7 @@ public class Execute extends Service {
 					do {
 						trigger = true;
 						idWiersza = c.getInt(c.getColumnIndexOrThrow(DiyDbAdapter.KEY_ROWID));
-						System.out.println("Jestem w pêtli, w wierszu "+idWiersza);
+						System.out.println("Jestem w pï¿½tli, w wierszu "+idWiersza);
 						if((c.getInt(c.getColumnIndexOrThrow(DiyDbAdapter.KEY_ENABLED))==1)){
 							
 						
@@ -105,9 +105,9 @@ public class Execute extends Service {
 								}
 							
 
-							System.out.println("Jestem za pierwszym ifem, zwróci³: "+warunek+" a trigger "+trigger);
+							System.out.println("Jestem za pierwszym ifem, zwrï¿½ciï¿½: "+warunek+" a trigger "+trigger);
 							
-							System.out.println("Jestem za pierwszym ifem, zwróci³: "+warunek+" a trigger "+trigger);
+							System.out.println("Jestem za pierwszym ifem, zwrï¿½ciï¿½: "+warunek+" a trigger "+trigger);
 							warunek = c.getInt(c.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_LOCATION));	
 							if(warunek == 1)
 								{
@@ -115,7 +115,7 @@ public class Execute extends Service {
 										trigger = false;
 								}
 						
-							System.out.println("Jestem za drugim ifem, zwróci³: "+warunek);
+							System.out.println("Jestem za drugim ifem, zwrï¿½ciï¿½: "+warunek);
 							
 							warunek = c.getInt(c.getColumnIndexOrThrow(DiyDbAdapter.KEY_TRIGGER_WIFI));	
 							if(warunek == 1)
@@ -124,10 +124,13 @@ public class Execute extends Service {
 										trigger = false;
 								}
 							
-							System.out.println("Jestem za trzecim ifem, zwróci³: "+warunek);
+							System.out.println("Jestem za trzecim ifem, zwrï¿½ciï¿½: "+warunek);
 							System.out.println("Trigger " + trigger);
 							
 							if(trigger){
+								//w tej petli dodac wypisywanie na widgecie
+								Intent intent=new Intent();
+						        //intent.setClassName("com.diyapp.kreator2", "com.diyapp.kreator2.WidgetClass");
 								System.out.println("ala0.7");
 								if(c.getInt(c.getColumnIndexOrThrow(DiyDbAdapter.KEY_ACTION_WIFI)) == 1)
 								{
@@ -175,8 +178,8 @@ public class Execute extends Service {
 								System.out.println("ala10");
 							}
 							System.out.println("ala11");
-							System.out.println("Jestem za trzecim ifem, zwróci³: "+warunek);
-							System.out.println("Koñcowy wynik: " + trigger);
+							System.out.println("Jestem za trzecim ifem, zwrï¿½ciï¿½: "+warunek);
+							System.out.println("Koï¿½cowy wynik: " + trigger);
 							
 						}
 					} while (c.moveToNext());

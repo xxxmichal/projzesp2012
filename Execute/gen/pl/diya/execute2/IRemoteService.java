@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: /home/lab/projzesp2012/Execute/src/pl/diya/execute2/IRemoteService.aidl
+ * Original file: /home/bartek/projzesp2012/Execute/src/pl/diya/execute2/IRemoteService.aidl
  */
 package pl.diya.execute2;
 // service interface
