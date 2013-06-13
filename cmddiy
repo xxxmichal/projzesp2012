@@ -1,6 +1,13 @@
+adb shell am start -a android.intent.action.DELETE -d package:com.example.fakediya
+
+- xtr drawing
+
 - ssid
 - repeatable days
-- limit slider width
+- limit slider width ( fsck checkboxes)
+- www + checkbox notification
+- set number as int keyboard
+- debugger wtf?
 
 
 

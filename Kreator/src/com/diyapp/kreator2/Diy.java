@@ -32,7 +32,21 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+
+//importy z service
+
+import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.RemoteException;
+import android.util.Log;
+
 import com.diyapp.lib.DiyDbAdapter;
+import pl.diya.execute2.IRemoteService;
 
 public class Diy extends ListActivity {
 	private static final int ACTIVITY_CREATE = 0;
@@ -42,6 +56,33 @@ public class Diy extends ListActivity {
 	private static final int DELETE_ID = Menu.FIRST + 1;
 
 	private DiyDbAdapter mDbHelper;
+	
+	//uzywanie service
+	IRemoteService mRemoteService;
+	
+	private ServiceConnection mServiceConnection=new ServiceConnection() {
+
+		@Override
+		public void onServiceDisconnected(ComponentName name) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onServiceConnected(ComponentName name, IBinder service) {
+			// get instance of the aidl binder
+			mRemoteService = IRemoteService.Stub.asInterface(service);
+			try {
+				String message=mRemoteService.sayHello("Mina");
+				Log.v("message", message);
+			} catch (RemoteException e) {
+				Log.e("RemoteException", e.toString());
+			}
+
+		}
+	};
+	
+	//koniec uzywania service
 
 	/** Called when the activity is first created. */
 	@Override
@@ -49,6 +90,12 @@ public class Diy extends ListActivity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.diys_list);
+		
+		Intent serviceIntent=new Intent();
+        serviceIntent.setClassName("pl.diya.execute2", "pl.diya.execute2.Execute");
+        boolean ok=bindService(serviceIntent, mServiceConnection,Context.BIND_AUTO_CREATE);
+        Log.v("ok", String.valueOf(ok));
+		
 		mDbHelper = new DiyDbAdapter(this);
 		mDbHelper.open();
 		fillData();
